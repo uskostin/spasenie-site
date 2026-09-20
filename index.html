@@ -225,6 +225,7 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
     <nav class="nav">
       <a href="#/" data-route="/"><span class="ru">Главная</span><span class="en">Home</span></a>
       <a href="#/novosti" data-route="/novosti"><span class="ru">Новости</span><span class="en">News</span></a>
+      <a href="#/stati" data-route="/stati"><span class="ru">Статьи</span><span class="en">Articles</span></a>
       <a href="#/o-cerkvi" data-route="/o-cerkvi"><span class="ru">О церкви</span><span class="en">About</span></a>
       <a href="#/kontakty" data-route="/kontakty"><span class="ru">Контакты</span><span class="en">Contact</span></a>
     </nav>
@@ -438,6 +439,26 @@ function homeNews(){
   </section>`;
 }
 
+function homeArticles(){
+  const cards = ARTICLES.slice(0,2).map(a => `
+    <a class="ncard" href="#/stati/${a.id}">
+      <time>${fmtDate(a.date)}</time>
+      <h3>${bi(esc(a.ru.title), esc(a.en.title))}</h3>
+      <p>${bi(esc(a.ru.lead), esc(a.en.lead))}</p>
+    </a>`).join("");
+
+  return `
+  <section>
+    <div class="wrap">
+      <div class="block-head">
+        <h2>${bi("Статьи","Articles")}</h2>
+        <a href="#/stati">${bi("Все статьи","All articles")}</a>
+      </div>
+      <div class="ngrid">${cards}</div>
+    </div>
+  </section>`;
+}
+
 function pageHome(){
   return `
   <section class="hero hero--video">
@@ -477,6 +498,8 @@ function pageHome(){
   </section>
 
   ${homeNews()}
+
+  ${homeArticles()}
 
   <section>
     <div class="wrap split">
