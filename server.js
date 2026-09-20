@@ -9,7 +9,9 @@ const PORT = process.env.PORT || 3000;
 // articles unreachable until their publication commit removes the path here.
 const UNPUBLISHED_PATHS = new Set([
   "/stati/smysl-prazdnika-zhatvy-v-cerkvi/",
-  "/stati/prazdnik-zhatvy-s-detmi-orlando/"
+  "/en/articles/smysl-prazdnika-zhatvy-v-cerkvi/",
+  "/stati/prazdnik-zhatvy-s-detmi-orlando/",
+  "/en/articles/prazdnik-zhatvy-s-detmi-orlando/"
 ]);
 const TYPES = {
   ".html": "text/html; charset=utf-8",
