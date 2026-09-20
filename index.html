@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Церковь «Спасение» — русскоязычная церковь в Орландо</title>
+<meta name="description" content="Русскоязычная христианская церковь в Уинтер-Парке, Флорида. Богослужения: воскресенье 13:00, четверг 19:00. 701 Formosa Avenue.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --paper:#FBFBF8;--surface:#F0F3EF;--ink:#16241E;--stone:#6C7A73;
+  --pine:#1E6048;--line:#DCE2DD;--contrast:#16241E;--on-contrast:#F4F7F3;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1512;--surface:#16201B;--ink:#E8EFE9;--stone:#93A29A;
+    --pine:#6FC49E;--line:#26312B;--contrast:#E8EFE9;--on-contrast:#0E1512;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1512;--surface:#16201B;--ink:#E8EFE9;--stone:#93A29A;
+  --pine:#6FC49E;--line:#26312B;--contrast:#E8EFE9;--on-contrast:#0E1512;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(70px + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--pine);outline-offset:3px}
+.wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
+.en{display:none}
+body.lang-en .ru{display:none}
+body.lang-en .en{display:inline}
+
+/* header */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.head-in{display:flex;align-items:center;min-height:64px;gap:1.2rem}
+.brand{margin-right:auto;text-decoration:none;font-weight:600;font-size:1.05rem;letter-spacing:-.01em;display:flex;align-items:center;gap:.55rem}
+.brand .mark{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none}
+.brand i{font-style:normal;color:var(--stone);font-weight:400}
+.nav{display:flex;gap:1.3rem}
+.nav a{text-decoration:none;color:var(--stone);font-size:.93rem;padding:.15rem 0;border-bottom:1px solid transparent}
+.nav a:hover{color:var(--ink)}
+.nav a.on{color:var(--ink);border-color:var(--pine)}
+.lang{display:flex;gap:.4rem}
+.lang button{font:inherit;font-size:.85rem;background:none;border:0;color:var(--stone);cursor:pointer;padding:.2rem .1rem}
+.lang button[aria-pressed="true"]{color:var(--ink);font-weight:600;box-shadow:inset 0 -1px 0 var(--pine)}
+.burger{display:none;background:none;border:0;color:var(--ink);font-size:1.4rem;cursor:pointer;line-height:1;padding:.2rem .4rem}
+@media (max-width:900px){
+  .nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:.5rem 1.25rem 1rem}
+  .nav.open{display:flex}
+  .nav a{padding:.6rem 0;border-bottom:1px solid var(--line)}
+  .burger{display:block}
+}
+
+/* hero */
+.hero{padding:clamp(3rem,8vw,6rem) 0 clamp(2.5rem,5vw,4rem)}
+.kicker{color:var(--stone);font-size:.95rem;margin:0 0 2.2rem}
+.slot{display:grid;grid-template-columns:minmax(0,auto) 1fr;gap:clamp(1rem,4vw,2.6rem);align-items:end;padding-bottom:1.1rem;border-bottom:1px solid var(--line);margin-bottom:1.1rem}
+.slot .t{font-size:clamp(3.2rem,12vw,7rem);line-height:.86;font-weight:300;letter-spacing:-.045em;font-variant-numeric:tabular-nums}
+.slot .meta{padding-bottom:.55rem}
+.slot .meta b{display:block;font-weight:600;font-size:clamp(1rem,2.4vw,1.25rem)}
+.slot .meta span{color:var(--stone);font-size:.95rem}
+.hero-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,20rem),1fr));gap:clamp(1.6rem,4vw,3rem);align-items:start;margin-top:2.2rem}
+.hero h1{font-size:clamp(1.5rem,3.4vw,2.2rem);font-weight:500;line-height:1.28;letter-spacing:-.02em;margin:0;max-width:26ch}
+.lead{color:var(--stone);max-width:52ch;margin:0 0 1.8rem}
+
+.btns{display:flex;flex-wrap:wrap;gap:.7rem}
+.btn{display:inline-block;text-decoration:none;font-size:.95rem;font-weight:500;padding:.8rem 1.5rem;border-radius:999px;border:1px solid transparent;cursor:pointer;font-family:inherit}
+.btn-a{background:var(--contrast);color:var(--on-contrast)}
+.btn-b{border-color:var(--line);color:var(--ink)}
+.btn-b:hover{border-color:var(--stone)}
+
+/* sections */
+section{padding:clamp(3rem,6.5vw,5rem) 0}
+.band{background:var(--surface);border-block:1px solid var(--line)}
+.split{display:flex;flex-wrap:wrap;gap:clamp(1.2rem,3.5vw,3.2rem);align-items:flex-start}
+.split>h2{flex:0 1 12rem}
+.split>*:not(h2){flex:1 1 32rem;min-width:0}
+.split h2{font-size:1.1rem;font-weight:600;margin:0;letter-spacing:-.01em}
+@media (max-width:820px){.split{gap:1.1rem}.split>h2{flex-basis:100%;color:var(--stone)}}
+.item{padding:1.4rem 0;border-top:1px solid var(--line)}
+.item:first-child{border-top:0;padding-top:0}
+.item h3{margin:0 0 .35rem;font-size:1.05rem;font-weight:600}
+.item p{margin:0;color:var(--stone);max-width:58ch}
+.prose p{margin:0 0 1.1rem;max-width:62ch}
+.prose p:last-child{margin-bottom:0}
+.verse{margin:2rem 0 0;font-size:1.3rem;line-height:1.45;font-weight:300;max-width:34ch;padding:0}
+.verse footer{margin-top:.7rem;font-size:.85rem;color:var(--stone)}
+
+/* page heads */
+.page-head{padding:clamp(2.6rem,6vw,4.5rem) 0 1.5rem}
+.page-head h1{font-size:clamp(1.9rem,5vw,3rem);font-weight:500;letter-spacing:-.03em;margin:0 0 .6rem;line-height:1.1}
+.page-head p{color:var(--stone);margin:0;max-width:56ch}
+
+/* news + articles */
+.feed{display:grid;gap:0;padding-bottom:4rem}
+.post{display:grid;grid-template-columns:minmax(0,9rem) 1fr;gap:clamp(1rem,4vw,3rem);padding:2rem 0;border-top:1px solid var(--line)}
+.post time{color:var(--stone);font-size:.9rem;font-variant-numeric:tabular-nums}
+.post h2{margin:0 0 .5rem;font-size:1.3rem;font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.post p{margin:0 0 .9rem;max-width:62ch;color:var(--ink)}
+.post .shot{margin:1rem 0 0;border-radius:12px;overflow:hidden;border:1px solid var(--line);max-width:34rem}
+.ph{aspect-ratio:3/2;background:
+  repeating-linear-gradient(45deg,var(--surface),var(--surface) 12px,transparent 12px,transparent 24px);
+  display:grid;place-items:center;color:var(--stone);font-size:.85rem;text-align:center;padding:1rem}
+.tagline{color:var(--stone);font-size:.88rem}
+.readmore{background:none;border:0;font:inherit;font-size:.93rem;font-weight:600;color:var(--pine);cursor:pointer;padding:0}
+.readmore:hover{text-decoration:underline}
+@media (max-width:760px){.post{grid-template-columns:1fr;gap:.6rem;padding:1.6rem 0}}
+
+.draft{display:inline-block;font-size:.72rem;font-weight:600;color:var(--pine);border:1px solid var(--pine);border-radius:999px;padding:.05rem .5rem;margin-bottom:.6rem}
+
+/* article view */
+.article{padding:2rem 0 5rem;max-width:44rem}
+.article h1{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:500;letter-spacing:-.025em;line-height:1.15;margin:.6rem 0 .8rem}
+.article .body p{margin:0 0 1.2rem;max-width:none}
+.back{background:none;border:0;font:inherit;color:var(--stone);cursor:pointer;padding:0;font-size:.92rem}
+.back:hover{color:var(--ink)}
+
+/* give */
+.pay{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr))}
+.pay>div{background:var(--paper);padding:1.6rem;display:flex;flex-direction:column}
+.pay h3{margin:0 0 .3rem;font-size:1rem}
+.pay p{margin:0 0 1rem;color:var(--stone);font-size:.94rem;flex:1 0 auto;max-width:26ch}
+.pay a{color:var(--pine);text-decoration:none;font-weight:600;font-size:.95rem;overflow-wrap:break-word}
+.pay a.long{font-size:clamp(.76rem,2.9vw,.95rem);white-space:nowrap}
+
+
+/* contacts */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:1.6rem 2rem}
+.cards h3{margin:0 0 .3rem;font-size:.9rem;color:var(--stone);font-weight:500}
+.cards a,.cards address{font-size:1.05rem;font-weight:600;font-style:normal;text-decoration:none;line-height:1.4;display:block;overflow-wrap:break-word}
+.cards a[href^="tel:"]{white-space:nowrap}
+.cards .note{margin:0 0 .5rem;color:var(--stone);font-size:.9rem;line-height:1.45;max-width:28ch}
+.cards a.long{font-size:.95rem}
+.cards a:hover{color:var(--pine)}
+.cards .small{font-size:.92rem;font-weight:500;color:var(--pine);margin-top:.5rem}
+
+
+.endbanner{border-top:1px solid var(--line);background:#12333c}
+.endbanner img{display:block;width:100%;height:auto}
+footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:var(--stone);font-size:.88rem}
+.foot-in{display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between}
+.foot-in a{color:var(--stone)}
+.announce{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem;margin-top:1.6rem;padding:1rem 1.2rem;border:1px solid var(--line);border-left:3px solid var(--pine);border-radius:0 10px 10px 0;text-decoration:none;background:var(--surface)}
+.announce:hover{border-color:var(--pine)}
+.announce-tag{color:var(--pine);font-size:.8rem;font-weight:600}
+.announce-body{display:flex;flex-wrap:wrap;gap:.2rem .7rem;align-items:baseline}
+.announce-body b{font-weight:600}
+.announce-body span{color:var(--stone);font-size:.95rem}
+.hero-top{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,21rem),1fr));gap:clamp(1.6rem,4vw,3.2rem);align-items:center}
+.hero-top h1{font-size:clamp(1.9rem,4.2vw,2.8rem);font-weight:500;line-height:1.2;letter-spacing:-.025em;margin:0 0 1rem;max-width:20ch}
+
+.poster{display:block;text-decoration:none;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--surface)}
+.poster img{width:100%;height:auto}
+.poster-cap{display:block;padding:.9rem 1.1rem}
+.poster-cap b{display:block;font-weight:600;margin-bottom:.15rem}
+.poster-cap span{color:var(--stone);font-size:.93rem}
+.poster:hover{border-color:var(--pine)}
+.schedule-strip{margin-top:clamp(2.2rem,5vw,3.5rem)}
+
+.block-head{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1.8rem}
+.block-head h2{margin:0;font-size:1.4rem;font-weight:600;letter-spacing:-.02em}
+.block-head a{color:var(--pine);font-size:.93rem;font-weight:600;text-decoration:none}
+.ngrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:1.8rem}
+.ncard{display:block;text-decoration:none}
+.ncard-img{display:block;aspect-ratio:4/3;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:.9rem;background:var(--paper)}
+.ncard-img img{width:100%;height:100%;object-fit:cover}
+.ncard-img .ph{height:100%}
+.ncard time{color:var(--stone);font-size:.85rem}
+.ncard h3{margin:.3rem 0 .4rem;font-size:1.08rem;font-weight:600;line-height:1.3}
+.ncard p{margin:0;color:var(--stone);font-size:.95rem}
+.ncard:hover h3{color:var(--pine)}
+.gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:1rem;margin-top:2rem}
+.gal figure{margin:0}
+.gal img{width:100%;height:100%;object-fit:cover;aspect-ratio:3/2;border-radius:12px;border:1px solid var(--line)}
+.gal-wide{grid-column:1/-1}
+.gal-wide img{aspect-ratio:16/9}
+.gal figcaption{margin-top:.6rem;color:var(--stone);font-size:.9rem}
+@media (max-width:700px){.gal{gap:.7rem}}
+.gal-cards{grid-template-columns:repeat(auto-fit,minmax(min(100%,10rem),1fr))}
+.gal-cards img{aspect-ratio:auto;height:auto;object-fit:contain;background:var(--paper)}
+
+/* первый экран с видеофоном */
+.hero--video{position:relative;overflow:hidden;background:#101a16;padding:clamp(3.5rem,8vw,6.5rem) 0 clamp(3rem,6vw,4.5rem)}
+.hero--video>.wrap{position:relative;z-index:1}
+.hero--video .hero-top>div{max-width:44rem}
+.hero-video{position:absolute;inset:0;z-index:0}
+.hero-video video{width:100%;height:100%;object-fit:cover;display:block}
+.hero-video::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(12,24,19,.72),rgba(12,24,19,.58) 40%,rgba(12,24,19,.88))}
+.hero--video h1,.hero--video .slot .t,.hero--video .slot .meta b{color:#F4F7F3}
+.hero--video .kicker,.hero--video .lead,.hero--video .slot .meta span{color:rgba(244,247,243,.78)}
+.hero--video .slot{border-bottom-color:rgba(244,247,243,.28)}
+.hero--video .btn-a{background:#F4F7F3;color:#12201A}
+.hero--video .btn-b{border-color:rgba(244,247,243,.5);color:#F4F7F3}
+.hero--video .btn-b:hover{border-color:#F4F7F3}
+@media (prefers-reduced-motion:reduce){.hero-video video{display:none}}
+
+/* видео в новостях */
+.newsvid{display:block;width:100%;max-width:22rem;margin:1.2rem 0 0;border-radius:12px;border:1px solid var(--line);background:#000}
+.gal-head{margin:2.4rem 0 1rem;font-size:1.05rem;font-weight:600;color:var(--stone)}
+.gal img{cursor:zoom-in;transition:opacity .15s}
+.gal img:hover{opacity:.9}
+.lb{position:fixed;inset:0;z-index:90;background:rgba(10,16,13,.92);display:none;align-items:center;justify-content:center;padding:calc(1.5rem + env(safe-area-inset-top,0px)) 1.5rem calc(1.5rem + env(safe-area-inset-bottom,0px))}
+.lb.on{display:flex}
+.lb figure{margin:0;max-width:min(1000px,100%);text-align:center}
+.lb img{max-width:100%;max-height:78vh;width:auto;border-radius:10px;display:block;margin:0 auto}
+.lb figcaption{color:#E8EFE9;margin-top:.9rem;font-size:.95rem}
+.lb-close{position:absolute;top:calc(1rem + env(safe-area-inset-top,0px));right:1.2rem;background:none;border:0;color:#E8EFE9;font-size:2rem;line-height:1;cursor:pointer;padding:.2rem .6rem}
+.hidden{display:none !important}
+</style>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="#/"><img class="mark" src="img/000.jpg" alt=""><span class="ru">Спасение</span><span class="en">Spasenie</span> <i><span class="ru">· Орландо</span><span class="en">· Orlando</span></i></a>
+    <button class="burger" type="button" aria-label="Меню">☰</button>
+    <nav class="nav">
+      <a href="#/" data-route="/"><span class="ru">Главная</span><span class="en">Home</span></a>
+      <a href="#/novosti" data-route="/novosti"><span class="ru">Новости</span><span class="en">News</span></a>
+      <a href="#/o-cerkvi" data-route="/o-cerkvi"><span class="ru">О церкви</span><span class="en">About</span></a>
+      <a href="#/kontakty" data-route="/kontakty"><span class="ru">Контакты</span><span class="en">Contact</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Язык / Language">
+      <button type="button" data-lang="ru" aria-pressed="true">Рус</button>
+      <button type="button" data-lang="en" aria-pressed="false">Eng</button>
+    </div>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<div class="endbanner"><img src="img/001.jpg" alt="Церковь «Спасение» — воскресенье 13:00, четверг 19:00"></div>
+
+<footer class="site-foot">
+  <div class="wrap foot-in">
+    <div><span class="ru">Церковь «Спасение», Уинтер-Парк, Флорида</span><span class="en">Spasenie Church, Winter Park, Florida</span></div>
+    <div><a href="https://www.facebook.com/ChurchSpasenie" target="_blank" rel="noopener">Facebook</a> · © 2026</div>
+  </div>
+</footer>
+
+<script>
+/* ==========================================================================
+   НОВОСТИ. Чтобы добавить новость — скопируйте один блок { ... } и вставьте
+   его самым первым в списке. Дата в формате ГГГГ-ММ-ДД.
+   draft: true — помечает запись как заглушку, уберите эту строку у реальных.
+   ========================================================================== */
+const POSTER = "img/002.jpg";
+
+/* Ближайшее событие. Баннер на главной показывается автоматически
+   до даты события включительно, потом исчезает сам. */
+const EVENT = {
+  date: "2026-09-27",
+  ru: { name: "Праздник Жатвы", when: "воскресенье 27 сентября, 13:00", note: "и праздничный обед после служения" },
+  en: { name: "Harvest Festival", when: "Sunday, September 27, 1:00 PM", note: "with a festive lunch after the service" }
+};
+
+const HERO_VIDEO = "video/0.mp4";
+const VIDEO_ORKESTR = "video/1.mp4";
+const POSTER_ORKESTR = "img/003.jpg";
+
+const NEWS = [
+  {
+    date: "2026-09-19",
+    photo: POSTER_ORKESTR,
+    video: VIDEO_ORKESTR,
+    ru: { title: "В гостях — духовой оркестр церкви «Спасение» ЕХБ",
+          text: "На днях у нас в гостях был духовой оркестр церкви «Спасение» ЕХБ из Edgewood, штат Вашингтон. Рады приветствовать наших дорогих гостей. Пусть музыка звучит во славу Господа!" },
+    en: { title: "Guests from Edgewood: the Spasenie church brass band",
+          text: "This week we welcomed the brass band of Spasenie Baptist Church from Edgewood, Washington. We were glad to host our dear guests — may the music sound to the glory of God!" }
+  },
+  {
+    date: "2026-08-31",
+    photo: POSTER,
+    ru: { title: "Приглашаем на Праздник Жатвы",
+          text: "В воскресенье 27 сентября в 13:00 будем благодарить Бога за Его щедрость и благословения, а после служения разделим праздничный обед. Приходите всей семьёй." },
+    en: { title: "Join us for the Harvest Festival",
+          text: "On Sunday, September 27 at 1:00 PM we give thanks to God for His generosity and blessings, and share a festive lunch after the service. Bring the whole family." }
+  }
+];
+
+/* ==========================================================================
+   СТАТЬИ. body — массив абзацев, каждый абзац в кавычках через запятую.
+   ========================================================================== */
+const ARTICLES = [
+  {
+    id: "primer",
+    date: "2026-09-10",
+    draft: true,
+    ru: { title: "Название статьи",
+          lead: "Одно предложение о том, про что эта статья — оно показывается в списке.",
+          body: ["Первый абзац статьи.","Второй абзац статьи.","Третий абзац статьи."] },
+    en: { title: "Article title",
+          lead: "One sentence describing what this article is about.",
+          body: ["First paragraph.","Second paragraph.","Third paragraph."] }
+  }
+];
+
+/* ====================== дальше код, править не нужно ====================== */
+const MAPS = "https://maps.google.com/?q=701+Formosa+Avenue+Winter+Park+FL+32789";
+const T = { ru: 0, en: 1 };
+let lang = "ru";
+
+function attr(s){ return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;"); }
+
+function bi(ru, en){ return '<span class="ru">'+ru+'</span><span class="en">'+en+'</span>'; }
+
+function fmtDate(iso){
+  const d = new Date(iso + "T12:00:00");
+  const ru = d.toLocaleDateString("ru-RU", {day:"numeric", month:"long", year:"numeric"});
+  const en = d.toLocaleDateString("en-US", {month:"long", day:"numeric", year:"numeric"});
+  return bi(ru, en);
+}
+
+function photoBlock(p){
+  if (p) return '<div class="shot"><img src="'+p+'" alt=""></div>';
+  return '<div class="shot"><div class="ph">'+bi("место для фотографии","photo goes here")+'</div></div>';
+}
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+
+/* ---------- страницы ---------- */
+
+/* Главное фото на первом экране, когда нет ближайшего события.
+   Впишите сюда имя файла, например "foto-zal.jpg" */
+const HERO_PHOTO = null;
+
+function eventUpcoming(){
+  if (!EVENT) return false;
+  const today = new Date(); today.setHours(0,0,0,0);
+  return new Date(EVENT.date + "T23:59:59") >= today;
+}
+
+function heroFigure(){
+  if (eventUpcoming()){
+    return `
+    <a class="poster" href="#/novosti">
+      <img src="${POSTER}" alt="${attr(EVENT.ru.name)}">
+      <span class="poster-cap">
+        <b>${bi(EVENT.ru.name, EVENT.en.name)}</b>
+        <span>${bi(EVENT.ru.when + " " + EVENT.ru.note, EVENT.en.when + " " + EVENT.en.note)}</span>
+      </span>
+    </a>`;
+  }
+  if (HERO_PHOTO) return `<figure class="poster"><img src="${HERO_PHOTO}" alt=""></figure>`;
+  return "";
+}
+
+/* Новости на главной: показываются свежие, за последние RECENT_DAYS дней.
+   Когда все новости устареют, здесь автоматически появится обычный блок
+   с приглашением, а сами новости останутся на своей странице. */
+const RECENT_DAYS = 90;
+
+function homeNews(){
+  const now = Date.now();
+  const recent = NEWS.filter(n => now - new Date(n.date + "T12:00:00").getTime() < RECENT_DAYS*864e5).slice(0,3);
+
+  if (!recent.length){
+    return `
+    <section class="band">
+      <div class="wrap split">
+        <h2>${bi("Присоединяйтесь","Join us")}</h2>
+        <div class="prose">
+          <p>${bi("Мы собираемся дважды в неделю и всегда рады новым людям. Приходите на воскресное богослужение в 13:00 — после службы садимся за общий обед.","We gather twice a week and are always glad to meet new people. Come to the Sunday service at 1:00 PM and stay for lunch afterwards.")}</p>
+          <p class="btns" style="margin-top:1.2rem">
+            <a class="btn btn-a" href="${MAPS}" target="_blank" rel="noopener">${bi("Построить маршрут","Get directions")}</a>
+            <a class="btn btn-b" href="#/novosti">${bi("Новости церкви","Church news")}</a>
+          </p>
+        </div>
+      </div>
+    </section>`;
+  }
+
+  const cards = recent.map(n => `
+    <a class="ncard" href="#/novosti">
+      <span class="ncard-img">${n.photo ? '<img src="'+n.photo+'" alt="">' : '<span class="ph">'+bi("фотография","photo")+'</span>'}</span>
+      <time>${fmtDate(n.date)}</time>
+      <h3>${bi(esc(n.ru.title), esc(n.en.title))}</h3>
+      <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
+    </a>`).join("");
+
+  return `
+  <section class="band">
+    <div class="wrap">
+      <div class="block-head">
+        <h2>${bi("Новости","News")}</h2>
+        <a href="#/novosti">${bi("Все новости","All news")}</a>
+      </div>
+      <div class="ngrid">${cards}</div>
+    </div>
+  </section>`;
+}
+
+function pageHome(){
+  return `
+  <section class="hero hero--video">
+    <div class="hero-video" aria-hidden="true">
+      <video src="${HERO_VIDEO}" autoplay muted loop playsinline preload="auto" tabindex="-1"></video>
+    </div>
+    <div class="wrap hero-top">
+      <div>
+        <p class="kicker">${bi("Русскоязычная церковь в Уинтер-Парке, Флорида","Russian-speaking church in Winter Park, Florida")}</p>
+        <h1>${bi("Приходите в воскресенье и оставайтесь на обед","Come on Sunday and join us for lunch")}</h1>
+        <p class="lead">${bi(
+          "701 Formosa Avenue, Winter Park. Регистрироваться не нужно, дресс-кода нет. Служение идёт на русском языке и длится около полутора часов.",
+          "701 Formosa Avenue, Winter Park. No sign-up, no dress code. Services are in Russian and last about 90 minutes.")}</p>
+        <div class="btns">
+          <a class="btn btn-a" href="${MAPS}" target="_blank" rel="noopener">${bi("Построить маршрут","Get directions")}</a>
+          <a class="btn btn-b" href="#/o-cerkvi">${bi("О церкви","About us")}</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap schedule-strip">
+      <div class="slot">
+        <div class="t">13:00</div>
+        <div class="meta">
+          <b>${bi("Воскресенье","Sunday")}</b>
+          <span>${bi("Богослужение: пение, проповедь, общий обед после службы","Worship service: singing, preaching, and lunch together afterwards")}</span>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="t">19:00</div>
+        <div class="meta">
+          <b>${bi("Четверг","Thursday")}</b>
+          <span>${bi("Разбор Писания и совместная молитва","Scripture study and prayer together")}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  ${homeNews()}
+
+  <section>
+    <div class="wrap split">
+      <h2>${bi("Если вы впервые","First visit")}</h2>
+      <div>
+        <div class="item"><h3>${bi("Приходите как есть","Come as you are")}</h3>
+          <p>${bi("Не нужно ни записываться, ни готовиться. Достаточно прийти к началу служения.","Nothing to prepare or sign up for. Just arrive before the service.")}</p></div>
+        <div class="item"><h3>${bi("Можно просто послушать","You can simply listen")}</h3>
+          <p>${bi("Никто не попросит вас выступать.","No one will ask you to speak.")}</p></div>
+        <div class="item"><h3>${bi("С детьми можно","Children welcome")}</h3>
+          <p>${bi("Дети остаются с родителями. Выйти с малышом посреди служения — нормально.","Children stay with their parents, and stepping out with a little one mid-service is fine.")}</p></div>
+      </div>
+    </div>
+  </section>
+
+  ${blockGive()}
+  ${blockContacts()}`;
+}
+
+function videoBlock(src, poster){
+  return `<video class="newsvid" src="${src}" ${poster ? 'poster="'+poster+'"' : ''} controls playsinline preload="none"></video>`;
+}
+
+function pageNews(){
+  const items = NEWS.map(n => `
+    <article class="post">
+      <time>${fmtDate(n.date)}</time>
+      <div>
+        ${n.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
+        <h2>${bi(esc(n.ru.title), esc(n.en.title))}</h2>
+        <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
+        ${n.video ? videoBlock(n.video, n.photo) : photoBlock(n.photo)}
+      </div>
+    </article>`).join("");
+
+  return `
+  <div class="page-head"><div class="wrap">
+    <h1>${bi("Новости","News")}</h1>
+    <p>${bi("Что происходит в жизни общины.","What is happening in the life of our community.")}</p>
+  </div></div>
+  <div class="wrap"><div class="feed">${items}</div></div>`;
+}
+
+function pageArticles(){
+  const items = ARTICLES.map(a => `
+    <article class="post">
+      <time>${fmtDate(a.date)}</time>
+      <div>
+        ${a.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
+        <h2>${bi(esc(a.ru.title), esc(a.en.title))}</h2>
+        <p>${bi(esc(a.ru.lead), esc(a.en.lead))}</p>
+        <a class="readmore" href="#/stati/${a.id}">${bi("Читать полностью","Read in full")}</a>
+      </div>
+    </article>`).join("");
+
+  return `
+  <div class="page-head"><div class="wrap">
+    <h1>${bi("Статьи","Articles")}</h1>
+    <p>${bi("Размышления, проповеди и свидетельства.","Reflections, sermons and testimonies.")}</p>
+  </div></div>
+  <div class="wrap"><div class="feed">${items}</div></div>`;
+}
+
+function pageArticle(id){
+  const a = ARTICLES.find(x => x.id === id);
+  if (!a) return pageArticles();
+  const body = l => a[l].body.map(p => "<p>"+esc(p)+"</p>").join("");
+  return `
+  <div class="wrap article">
+    <button class="back" onclick="location.hash='#/stati'">← ${bi("Все статьи","All articles")}</button>
+    <h1>${bi(esc(a.ru.title), esc(a.en.title))}</h1>
+    <p class="tagline">${fmtDate(a.date)}</p>
+    <div class="body">
+      <div class="ru">${body("ru")}</div>
+      <div class="en" style="display:none">${body("en")}</div>
+    </div>
+  </div>`;
+}
+
+const GALLERY = [
+  { group: "2020", src: "img/004.jpg" },
+  { group: "2020", src: "img/005.jpg" },
+  { group: "2020", src: "img/006.jpg" },
+  { group: "2020", src: "img/007.jpg" },
+  { group: "2020", src: "img/008.jpg" },
+  { group: "2020", src: "img/009.jpg" },
+  { group: "2020", src: "img/010.jpg" },
+  { group: "2020", src: "img/011.jpg" },
+  { group: "2020", src: "img/012.jpg" },
+  { group: "2020", src: "img/013.jpg" },
+  { group: "2020", src: "img/014.jpg" },
+  { group: "ранее", src: "img/015.jpg" },
+  { group: "ранее", src: "img/016.jpg" },
+  { group: "ранее", src: "img/016.jpg" },
+  { group: "ранее", src: "img/017.jpg" },
+  { group: "ранее", src: "img/018.jpg" },
+  { group: "ранее", src: "img/019.jpg" },
+  { group: "ранее", src: "img/020.jpg" },
+  { group: "ранее", src: "img/021.jpg" },
+  { group: "ранее", src: "img/022.jpg" },
+  { group: "ранее", src: "img/023.jpg" },
+  { group: "ранее", src: "img/024.jpg" },
+  { group: "ранее", src: "img/025.jpg" },
+];
+
+const SERVICE = [
+  { group: "служение", src: "img/026.jpg" },
+  { group: "служение", src: "img/027.jpg" },
+  { group: "служение", src: "img/028.jpg" },
+  { group: "служение", src: "img/029.jpg" },
+  { group: "служение", src: "img/030.jpg" },
+  { group: "рождество", src: "img/031.jpg" },
+  { group: "рождество", src: "img/032.jpg" },
+  { group: "рождество", src: "img/033.jpg" },
+  { group: "рождество", src: "img/034.jpg" },
+  { group: "рождество", src: "img/035.jpg" },
+  { group: "рождество", src: "img/036.jpg" },
+];
+
+const PRAYER = [
+  { group: "молитва", src: "img/037.jpg" },
+  { group: "молитва", src: "img/038.jpg" },
+  { group: "молитва", src: "img/039.jpg" },
+  { group: "молитва", src: "img/040.jpg" },
+  { group: "свечи", src: "img/041.jpg" },
+  { group: "свечи", src: "img/042.jpg" },
+  { group: "свечи", src: "img/043.jpg" },
+  { group: "свечи", src: "img/044.jpg" },
+  { group: "свечи", src: "img/045.jpg" },
+];
+
+const STUDY = [
+  { group: "изучение", src: "img/046.jpg" },
+  { group: "изучение", src: "img/047.jpg" },
+  { group: "изучение", src: "img/048.jpg" },
+  { group: "изучение", src: "img/049.jpg" },
+  { group: "изучение", src: "img/050.jpg" },
+];
+
+const SERMON = [
+  { group: "стих", src: "img/051.jpg" },
+  { group: "стих", src: "img/052.jpg" },
+  { group: "стих", src: "img/053.jpg" },
+  { group: "стих", src: "img/054.jpg" },
+  { group: "стих", src: "img/055.jpg" },
+  { group: "стих", src: "img/056.jpg" },
+];
+
+const KIDS = [
+  { group: "служение", src: "img/057.jpg" },
+  { group: "служение", src: "img/058.jpg" },
+  { group: "служение", src: "img/059.jpg" },
+  { group: "служение", src: "img/060.jpg" },
+  { group: "служение", src: "img/061.jpg" },
+  { group: "служение", src: "img/062.jpg" },
+  { group: "служение", src: "img/063.jpg" },
+  { group: "служение", src: "img/064.jpg" },
+  { group: "служение", src: "img/058.jpg" },
+  { group: "служение", src: "img/065.jpg" },
+  { group: "школа", src: "img/066.jpg" },
+  { group: "школа", src: "img/067.jpg" },
+  { group: "школа", src: "img/068.jpg" },
+  { group: "школа", src: "img/069.jpg" },
+  { group: "школа", src: "img/070.jpg" },
+];
+
+
+const MEALS = [
+  { group: "обед", src: "img/071.jpg" },
+  { group: "обед", src: "img/072.jpg" },
+  { group: "обед", src: "img/073.jpg" },
+];
+
+const ACTIVITIES = [
+  { group: "лагерь", src: "img/074.jpg" },
+  { group: "лагерь", src: "img/075.jpg" },
+  { group: "лагерь", src: "img/076.jpg" },
+  { group: "лагерь", src: "img/077.jpg" },
+  { group: "лагерь", src: "img/078.jpg" },
+  { group: "лагерь", src: "img/079.jpg" },
+  { group: "лагерь", src: "img/080.jpg" },
+  { group: "лагерь", src: "img/081.jpg" },
+  { group: "лагерь", src: "img/082.jpg" },
+  { group: "пикник", src: "img/083.jpg" },
+  { group: "пикник", src: "img/084.jpg" },
+];
+
+const TOGETHER = [
+  { group: "община", src: "img/085.jpg" },
+];
+
+const BAPTISM = [
+  { group: "крещение", src: "img/086.jpg" },
+  { group: "крещение", src: "img/087.jpg" },
+  { group: "крещение", src: "img/088.jpg" },
+  { group: "после", src: "img/089.jpg" },
+  { group: "после", src: "img/090.jpg" },
+];
+
+
+function galRow(list, group, leadWide, label){
+  return list.filter(g => g.group === group).map((g,i) => `
+    <figure class="${leadWide && i===0 ? "gal-wide" : ""}">
+      <img src="${g.src}" loading="lazy" alt="${attr(label || "")}">
+    </figure>`).join("");
+}
+
+function blockTogether(){
+  return `
+  <section class="band">
+    <div class="wrap split">
+      <h2>${bi("Все вместе","All of us")}</h2>
+      <div>
+        <div class="prose">
+          <p>${bi("Община — это в первую очередь люди. Здесь мы вместе: на праздниках, после служений, во дворе у входа. Эти снимки сделаны в разные годы, но лица на них те же, что вы встретите в воскресенье.","A church is first of all its people. These photographs were taken over several years — at festivals, after services, in the yard by the entrance — and the faces in them are the ones you will meet on a Sunday.")}</p>
+        </div>
+        <div class="gal">${galRow(TOGETHER, "община", true, bi("Община церкви «Спасение»","The Spasenie church community"))}</div>
+        <div class="gal">${galRow(TOGETHER, "молодёжь", false, bi("Молодёжь церкви","The young people of the church"))}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function blockService(){
+  return `
+  <section>
+    <div class="wrap split">
+      <h2>${bi("Служение","Worship")}</h2>
+      <div>
+        <div class="gal">${galRow(SERVICE, "служение", true, bi("Воскресное служение","Sunday service"))}${galRow(SERVICE, "рождество", false, bi("Рождественское служение","Christmas service"))}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function blockPrayer(){
+  return `
+  <section class="band">
+    <div class="wrap split">
+      <h2>${bi("Молитва","Prayer")}</h2>
+      <div>
+        <div class="gal">${galRow(PRAYER, "молитва", true, bi("Общая молитва","Praying together"))}${galRow(PRAYER, "свечи", false, bi("Служение при свечах","Candlelight service"))}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function blockStudy(){
+  return `
+  <section>
+    <div class="wrap split">
+      <h2>${bi("Изучение Библии","Bible study")}</h2>
+      <div>
+        <div class="gal">${galRow(STUDY, "изучение", true, bi("Изучение Библии","Bible study"))}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function blockBaptism(){
+  return `
+  <section class="band">
+    <div class="wrap split">
+      <h2>${bi("Крещение","Baptism")}</h2>
+      <div>
+        <div class="prose">
+          <p>${bi("Крещение — это открытое исповедание веры. Мы совершаем его так, как описано в Евангелии: полным погружением в воду. Над водой в этот день стоит одно слово — «Верую».","Baptism is an open confession of faith. We practise it as the Gospel describes: by full immersion. On that day a single word stands above the water — \"I believe\".")}</p>
+        </div>
+        <div class="gal">${galRow(BAPTISM, "крещение", true, bi("Крещение на озере","Baptism at the lake"))}${galRow(BAPTISM, "после", false, bi("После крещения","After the baptism"))}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function blockSermon(){
+  return `
+  <section>
+    <div class="wrap split">
+      <h2>${bi("Проповедь","Preaching")}</h2>
+      <div>
+        <div class="gal gal-cards">${galRow(SERMON, "стих", false, bi("Стих из проповеди","A verse from the sermon"))}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function blockKids(){
+  return `
+  <section class="band">
+    <div class="wrap split">
+      <h2>${bi("Дети","Children")}</h2>
+      <div>
+        <div class="gal">${galRow(KIDS, "служение", true, bi("Дети на служении","Children at the service"))}${galRow(KIDS, "школа", false, bi("Воскресная школа","Sunday school"))}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function blockMeals(){
+  return `
+  <section>
+    <div class="wrap split">
+      <h2>${bi("Обеды","Meals together")}</h2>
+      <div>
+        <div class="gal">${galRow(MEALS, "обед", true, bi("Общий обед","A meal together"))}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function blockHarvest(){
+  return `
+  <section class="band">
+    <div class="wrap split">
+      <h2>${bi("Праздник Жатвы","Harvest Festival")}</h2>
+      <div>
+        <div class="prose">
+          <p>${bi("Каждую осень мы отмечаем Праздник Жатвы — день благодарности Богу за Его щедрость. Зал украшают плодами земли, к служению пекут каравай, хор и дети готовят особую программу.","Every autumn we celebrate the Harvest Festival, a day of thanksgiving to God for His generosity. The hall is filled with the fruits of the earth, a festive loaf is baked, and the choir and children prepare a special programme.")}</p>
+          <p>${bi("После богослужения община накрывает общий стол и остаётся вместе — за едой, разговорами и песнями. Это один из самых тёплых дней в году, и на него мы зовём всех.","After the service the community sets a long table and stays together over food, conversation and singing. It is one of the warmest days of the year, and everyone is invited.")}</p>
+        </div>
+        <div class="gal">${galRow(GALLERY, "2020", true, bi("Праздник Жатвы","Harvest Festival"))}${galRow(GALLERY, "ранее", false, bi("Праздник Жатвы","Harvest Festival"))}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function blockActivities(){
+  return `
+  <section>
+    <div class="wrap split">
+      <h2>${bi("Активности","Life together")}</h2>
+      <div>
+
+        <div class="gal">${galRow(ACTIVITIES, "лагерь", true, bi("Молодёжный лагерь","Youth camp"))}${galRow(ACTIVITIES, "пикник", false, bi("Пикник церкви","Church picnic"))}</div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function pageAbout(){
+  return `
+  <div class="page-head"><div class="wrap">
+    <h1>${bi("О церкви","About the church")}</h1>
+  </div></div>
+  <section style="padding-top:1rem">
+    <div class="wrap split">
+      <h2>${bi("Кто мы","Who we are")}</h2>
+      <div class="prose">
+        <p>${bi("Мы — русскоязычная христианская община в Орландо. Многие из нас приехали во Флориду из разных стран, и церковь стала местом, где можно говорить на родном языке и быть среди своих.","We are a Russian-speaking Christian community in Orlando. Many of us came to Florida from different countries, and this church became a place to speak our first language among friends.")}</p>
+        <p>${bi("Мы любим Иисуса, делимся Его посланием и стараемся служить Богу и людям вокруг. Двери открыты и для тех, кто верит давно, и для тех, кто только присматривается.","We love Jesus, share His message and try to serve God and the people around us. Everyone is welcome — lifelong believers and those who are just looking.")}</p>
+        <blockquote class="verse">
+          ${bi("Придите ко Мне все труждающиеся и обременённые, и Я успокою вас.","Come to me, all you who are weary and burdened, and I will give you rest.")}
+          <footer>${bi("Евангелие от Матфея 11:28","Matthew 11:28")}</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+  ${blockTogether()}
+  ${blockService()}
+  ${blockBaptism()}
+  ${blockSermon()}
+  ${blockPrayer()}
+  ${blockStudy()}
+  ${blockKids()}
+  ${blockMeals()}
+  ${blockHarvest()}
+  ${blockActivities()}
+  <section class="band">
+    <div class="wrap split">
+      <h2>${bi("Расписание","Services")}</h2>
+      <div>
+        <div class="item"><h3>${bi("Воскресенье, 13:00","Sunday, 1:00 PM")}</h3>
+          <p>${bi("Общее богослужение: пение, проповедь, молитва. После служения — общий обед.","Worship service: singing, preaching, prayer. Lunch together afterwards.")}</p></div>
+        <div class="item"><h3>${bi("Четверг, 19:00","Thursday, 7:00 PM")}</h3>
+          <p>${bi("Вечернее служение: разбор Писания и совместная молитва.","Evening service: Scripture study and prayer together.")}</p></div>
+      </div>
+    </div>
+  </section>
+  ${blockContacts()}`;
+}
+
+function blockGive(){
+  return `
+  <section class="band">
+    <div class="wrap split">
+      <h2>${bi("Поддержать","Give")}</h2>
+      <div>
+        <p style="margin:0 0 1.5rem;color:var(--stone);max-width:58ch">${bi("Пожертвования помогают содержать здание и служения общины. Любая сумма — по желанию.","Giving helps cover the building and the ministries of our community. Any amount, entirely voluntary.")}</p>
+        <div class="pay">
+          <div>
+            <h3>Cash App</h3>
+            <p>${bi("Перевод на счёт церкви в один шаг.","A one-step transfer to the church account.")}</p>
+            <a href="https://cash.app/$ChurchSpasenie" target="_blank" rel="noopener">$ChurchSpasenie</a>
+          </div>
+          <div>
+            <h3>Zelle</h3>
+            <p>${bi("Через банковское приложение на адрес:","Through your banking app to:")}</p>
+            <a class="long" href="mailto:ChurchSpasenieOrlando@gmail.com">ChurchSpasenieOrlando@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function blockContacts(){
+  return `
+  <section id="kontakty">
+    <div class="wrap split">
+      <h2>${bi("Контакты","Contact")}</h2>
+      <div class="cards">
+        <div><h3>${bi("Телефон","Phone")}</h3><a href="tel:+14079003456">(407) 900-3456</a></div>
+        <div><h3>${bi("Почта","Email")}</h3><a href="mailto:hello@ChurchSpasenie.com">hello@ChurchSpasenie.com</a></div>
+        <div><h3>${bi("Новости и публикации","News and announcements")}</h3>
+          <p class="note">${bi("По вопросам новостных публикаций и размещения","For news items and announcements")}</p>
+          <a class="long" href="mailto:kostin@orlandorussianchurch.com">kostin@orlandorussianchurch.com</a></div>
+        <div><h3>${bi("Адрес","Address")}</h3>
+          <address>701 Formosa Avenue<br>Winter Park, FL 32789</address>
+          <a class="small" href="${MAPS}" target="_blank" rel="noopener">${bi("Открыть карту","Open in Maps")}</a></div>
+      </div>
+    </div>
+  </section>`;
+}
+
+function pageContacts(){
+  return `
+  <div class="page-head"><div class="wrap">
+    <h1>${bi("Контакты","Contact")}</h1>
+    <p>${bi("Напишите или позвоните — мы ответим.","Write or call — we will get back to you.")}</p>
+  </div></div>
+  ${blockContacts()}
+  <section class="band">
+    <div class="wrap split">
+      <h2>${bi("Мы в соцсетях","Social")}</h2>
+      <div>
+        <div class="item"><h3>Facebook</h3>
+          <p><a href="https://www.facebook.com/ChurchSpasenie" target="_blank" rel="noopener" style="color:var(--pine);font-weight:600;text-decoration:none">facebook.com/ChurchSpasenie</a></p></div>
+      </div>
+    </div>
+  </section>`;
+}
+
+/* ---------- роутер ---------- */
+function render(){
+  const hash = location.hash.replace(/^#/, "") || "/";
+  const parts = hash.split("/").filter(Boolean);
+  let html, route = "/" + (parts[0] || "");
+  if (parts[0] === "novosti") html = pageNews();
+  else if (parts[0] === "stati") html = parts[1] ? pageArticle(parts[1]) : pageArticles();
+  else if (parts[0] === "o-cerkvi") html = pageAbout();
+  else if (parts[0] === "kontakty") html = pageContacts();
+  else { html = pageHome(); route = "/"; }
+
+  document.getElementById("app").innerHTML = html;
+  document.querySelectorAll(".nav a").forEach(a => a.classList.toggle("on", a.dataset.route === route));
+  document.querySelector(".nav").classList.remove("open");
+  applyLang();
+  window.scrollTo(0, 0);
+}
+
+function applyLang(){
+  document.body.classList.toggle("lang-en", lang === "en");
+  document.documentElement.lang = lang;
+  document.querySelectorAll(".article .ru, .article .en").forEach(el => {
+    el.style.display = el.classList.contains(lang) ? "block" : "none";
+  });
+}
+
+document.querySelectorAll(".lang button").forEach(b => {
+  b.addEventListener("click", () => {
+    lang = b.dataset.lang;
+    document.querySelectorAll(".lang button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.lang === lang)));
+    try { localStorage.setItem("spasenie-lang", lang); } catch(e){}
+    applyLang();
+  });
+});
+document.querySelector(".burger").addEventListener("click", () => {
+  document.querySelector(".nav").classList.toggle("open");
+});
+try {
+  const s = localStorage.getItem("spasenie-lang");
+  if (s === "en") { lang = "en"; document.querySelectorAll(".lang button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.lang === "en"))); }
+} catch(e){}
+
+window.addEventListener("hashchange", render);
+render();
+
+/* просмотр фотографии по клику */
+(function(){
+  const lb = document.createElement("div");
+  lb.className = "lb";
+  lb.innerHTML = '<button class="lb-close" type="button" aria-label="Закрыть">&times;</button><figure><img alt=""></figure>';
+  document.body.appendChild(lb);
+  const big = lb.querySelector("img");
+
+  document.addEventListener("click", e => {
+    const img = e.target.closest(".gal img");
+    if (img){
+      big.src = img.src;
+      big.alt = img.alt;
+      lb.classList.add("on");
+      return;
+    }
+    if (e.target.closest(".lb")) lb.classList.remove("on");
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape") lb.classList.remove("on"); });
+})();
+</script>
+</body>
+</html>
