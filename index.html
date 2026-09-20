@@ -101,6 +101,7 @@ section{padding:clamp(3rem,6.5vw,5rem) 0}
 /* news + articles */
 .feed{display:grid;gap:0;padding-bottom:4rem}
 .post{display:grid;grid-template-columns:minmax(0,9rem) 1fr;gap:clamp(1rem,4vw,3rem);padding:2rem 0;border-top:1px solid var(--line)}
+.post--article{grid-template-columns:1fr}
 .post time{color:var(--stone);font-size:.9rem;font-variant-numeric:tabular-nums}
 .post h2{margin:0 0 .5rem;font-size:1.3rem;font-weight:600;letter-spacing:-.015em;line-height:1.25}
 .post p{margin:0 0 .9rem;max-width:62ch;color:var(--ink)}
@@ -544,7 +545,7 @@ function pageNews(){
 
 function pageArticles(){
   const items = ARTICLES.map(a => `
-    <article class="post">
+    <article class="post post--article">
       <div>
         ${a.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
         <h2>${bi(esc(a.ru.title), esc(a.en.title))}</h2>
