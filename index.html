@@ -250,7 +250,7 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
     <nav class="nav">
       <a href="#/" data-route="/"><span class="ru">Главная</span><span class="en">Home</span></a>
       <a href="#/novosti" data-route="/novosti"><span class="ru">Новости</span><span class="en">News</span></a>
-      <a href="/stati/" data-route="/stati"><span class="ru">Статьи</span><span class="en">Articles</span></a>
+      <a href="/stati/" data-route="/stati" data-articles-link><span class="ru">Статьи</span><span class="en">Articles</span></a>
       <a href="#/o-cerkvi" data-route="/o-cerkvi"><span class="ru">О церкви</span><span class="en">About</span></a>
       <a href="#/kontakty" data-route="/kontakty"><span class="ru">Контакты</span><span class="en">Contact</span></a>
     </nav>
@@ -466,7 +466,7 @@ function homeNews(){
 
 function homeArticles(){
   const cards = ARTICLES.slice(0,2).map(a => `
-    <a class="ncard" href="/stati/${a.id}/">
+    <a class="ncard" data-article-id="${a.id}" href="${lang === "en" ? "/en/articles/" : "/stati/"}${a.id}/">
       <h3>${bi(esc(a.ru.title), esc(a.en.title))}</h3>
       <p>${bi(esc(a.ru.lead), esc(a.en.lead))}</p>
     </a>`).join("");
@@ -476,7 +476,7 @@ function homeArticles(){
     <div class="wrap">
       <div class="block-head">
         <h2>${bi("Статьи","Articles")}</h2>
-        <a href="/stati/">${bi("Все статьи","All articles")}</a>
+        <a data-articles-link href="${lang === "en" ? "/en/articles/" : "/stati/"}">${bi("Все статьи","All articles")}</a>
       </div>
       <div class="ngrid">${cards}</div>
     </div>
@@ -574,7 +574,7 @@ function pageArticles(){
         ${a.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
         <h2>${bi(esc(a.ru.title), esc(a.en.title))}</h2>
         <p>${bi(esc(a.ru.lead), esc(a.en.lead))}</p>
-        <a class="readmore" href="/stati/${a.id}/">${bi("Читать полностью","Read in full")}</a>
+        <a class="readmore" data-article-id="${a.id}" href="${lang === "en" ? "/en/articles/" : "/stati/"}${a.id}/">${bi("Читать полностью","Read in full")}</a>
       </div>
     </article>`).join("");
 
@@ -983,6 +983,12 @@ function render(){
 function applyLang(){
   document.body.classList.toggle("lang-en", lang === "en");
   document.documentElement.lang = lang;
+  document.querySelectorAll("[data-articles-link]").forEach(el => {
+    el.href = lang === "en" ? "/en/articles/" : "/stati/";
+  });
+  document.querySelectorAll("[data-article-id]").forEach(el => {
+    el.href = (lang === "en" ? "/en/articles/" : "/stati/") + el.dataset.articleId + "/";
+  });
   document.querySelectorAll(".article .ru, .article .en").forEach(el => {
     el.style.display = el.classList.contains(lang) ? "block" : "none";
   });
