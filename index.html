@@ -442,7 +442,6 @@ function homeNews(){
 function homeArticles(){
   const cards = ARTICLES.slice(0,2).map(a => `
     <a class="ncard" href="#/stati/${a.id}">
-      <time>${fmtDate(a.date)}</time>
       <h3>${bi(esc(a.ru.title), esc(a.en.title))}</h3>
       <p>${bi(esc(a.ru.lead), esc(a.en.lead))}</p>
     </a>`).join("");
@@ -546,7 +545,6 @@ function pageNews(){
 function pageArticles(){
   const items = ARTICLES.map(a => `
     <article class="post">
-      <time>${fmtDate(a.date)}</time>
       <div>
         ${a.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
         <h2>${bi(esc(a.ru.title), esc(a.en.title))}</h2>
@@ -571,7 +569,6 @@ function pageArticle(id){
   <div class="wrap article">
     <button class="back" onclick="location.hash='#/stati'">← ${bi("Все статьи","All articles")}</button>
     <h1>${bi(esc(a.ru.title), esc(a.en.title))}</h1>
-    <p class="tagline">${fmtDate(a.date)}</p>
     <div class="body">
       <div class="ru">${body("ru")}</div>
       <div class="en" style="display:none">${body("en")}</div>
