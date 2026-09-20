@@ -5,6 +5,12 @@ const path = require("path");
 
 const ROOT = __dirname;
 const PORT = process.env.PORT || 3000;
+// GoDaddy may retain files removed by a later deployment. Keep scheduled
+// articles unreachable until their publication commit removes the path here.
+const UNPUBLISHED_PATHS = new Set([
+  "/stati/smysl-prazdnika-zhatvy-v-cerkvi/",
+  "/stati/prazdnik-zhatvy-s-detmi-orlando/"
+]);
 const TYPES = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -43,6 +49,11 @@ http.createServer((req, res) => {
   if (pathname === "/index.html") {
     res.writeHead(301, { ...HEADERS, Location: "/" });
     return res.end();
+  }
+
+  const normalizedPathname = pathname.endsWith("/") ? pathname : `${pathname}/`;
+  if (UNPUBLISHED_PATHS.has(normalizedPathname)) {
+    return send(res, 404, "Not found", "text/plain; charset=utf-8", "no-store");
   }
 
   const relative = pathname === "/" ? "index.html" : pathname.replace(/^\/+/, "");
