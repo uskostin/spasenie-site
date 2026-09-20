@@ -17,6 +17,7 @@ h2{font-size:1.35rem;line-height:1.3;margin:2.4rem 0 .7rem}
 h3{font-size:1.05rem;margin:1.5rem 0 .35rem}
 p{max-width:68ch;margin:.8rem 0}
 .lead{font-size:1.1rem;color:var(--stone);margin-bottom:2rem}
+.hero-image{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);margin:1.6rem 0 2rem}
 .answer{background:var(--surface);border-left:3px solid var(--pine);padding:1.2rem 1.4rem;margin:2rem 0;border-radius:0 12px 12px 0}
 .answer p{margin:0}
 .article-list{margin-top:2rem;border-top:1px solid var(--line)}
@@ -30,5 +31,7 @@ p{max-width:68ch;margin:.8rem 0}
 .breadcrumbs{font-size:.88rem;color:var(--stone);margin-bottom:1.5rem}
 .breadcrumbs a{color:var(--stone)}
 .sources{font-size:.9rem;color:var(--stone);margin-top:2.5rem}
+.details{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:2rem 0}
+.details>div{background:var(--surface);padding:1rem 1.2rem}.details small{display:block;color:var(--stone)}
 footer{border-top:1px solid var(--line);padding:1.6rem 0 3rem;color:var(--stone);font-size:.88rem}
 @media(max-width:620px){.head-in{align-items:flex-start;flex-direction:column;padding:1rem 0}.brand{margin-right:0}}
