@@ -5,6 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Церковь «Спасение» — русскоязычная церковь в Орландо</title>
 <meta name="description" content="Русскоязычная христианская церковь в Уинтер-Парке, Флорида. Богослужения: воскресенье 13:00, четверг 19:00. 701 Formosa Avenue.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://orlandorussianchurch.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:title" content="Церковь «Спасение» — русскоязычная церковь в Орландо">
+<meta property="og:description" content="Богослужения в Winter Park: воскресенье в 13:00, встреча по четвергам в 19:00.">
+<meta property="og:url" content="https://orlandorussianchurch.com/">
+<meta property="og:image" content="https://orlandorussianchurch.com/img/001.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Church",
+  "@id":"https://orlandorussianchurch.com/#church",
+  "name":"Церковь Спасение",
+  "url":"https://orlandorussianchurch.com/",
+  "image":"https://orlandorussianchurch.com/img/001.jpg",
+  "telephone":"+1-407-900-3456",
+  "email":"hello@ChurchSpasenie.com",
+  "address":{"@type":"PostalAddress","streetAddress":"701 Formosa Avenue","addressLocality":"Winter Park","addressRegion":"FL","postalCode":"32789","addressCountry":"US"},
+  "areaServed":["Winter Park","Orlando","Central Florida"],
+  "sameAs":["https://www.facebook.com/ChurchSpasenie"]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -226,7 +250,7 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
     <nav class="nav">
       <a href="#/" data-route="/"><span class="ru">Главная</span><span class="en">Home</span></a>
       <a href="#/novosti" data-route="/novosti"><span class="ru">Новости</span><span class="en">News</span></a>
-      <a href="#/stati" data-route="/stati"><span class="ru">Статьи</span><span class="en">Articles</span></a>
+      <a href="/stati/" data-route="/stati"><span class="ru">Статьи</span><span class="en">Articles</span></a>
       <a href="#/o-cerkvi" data-route="/o-cerkvi"><span class="ru">О церкви</span><span class="en">About</span></a>
       <a href="#/kontakty" data-route="/kontakty"><span class="ru">Контакты</span><span class="en">Contact</span></a>
     </nav>
@@ -442,7 +466,7 @@ function homeNews(){
 
 function homeArticles(){
   const cards = ARTICLES.slice(0,2).map(a => `
-    <a class="ncard" href="#/stati/${a.id}">
+    <a class="ncard" href="/stati/${a.id}/">
       <h3>${bi(esc(a.ru.title), esc(a.en.title))}</h3>
       <p>${bi(esc(a.ru.lead), esc(a.en.lead))}</p>
     </a>`).join("");
@@ -452,7 +476,7 @@ function homeArticles(){
     <div class="wrap">
       <div class="block-head">
         <h2>${bi("Статьи","Articles")}</h2>
-        <a href="#/stati">${bi("Все статьи","All articles")}</a>
+        <a href="/stati/">${bi("Все статьи","All articles")}</a>
       </div>
       <div class="ngrid">${cards}</div>
     </div>
@@ -550,7 +574,7 @@ function pageArticles(){
         ${a.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
         <h2>${bi(esc(a.ru.title), esc(a.en.title))}</h2>
         <p>${bi(esc(a.ru.lead), esc(a.en.lead))}</p>
-        <a class="readmore" href="#/stati/${a.id}">${bi("Читать полностью","Read in full")}</a>
+        <a class="readmore" href="/stati/${a.id}/">${bi("Читать полностью","Read in full")}</a>
       </div>
     </article>`).join("");
 
