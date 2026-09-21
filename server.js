@@ -7,10 +7,7 @@ const ROOT = __dirname;
 const PORT = process.env.PORT || 3000;
 // GoDaddy may retain files removed by a later deployment. Keep scheduled
 // articles unreachable until their publication commit removes the path here.
-const UNPUBLISHED_PATHS = new Set([
-  "/stati/prazdnik-zhatvy-s-detmi-orlando/",
-  "/en/articles/prazdnik-zhatvy-s-detmi-orlando/"
-]);
+const UNPUBLISHED_PATHS = new Set([]);
 const TYPES = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
