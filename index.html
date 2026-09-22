@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Церковь «Спасение» — русскоязычная церковь в Орландо</title>
-<meta name="description" content="Русскоязычная христианская церковь в Уинтер-Парке, Флорида. Богослужения: воскресенье 13:00, четверг 19:00. 701 Formosa Avenue.">
+<title>Russian-Speaking Church in Orlando | Spasenie Church</title>
+<meta name="description" content="Spasenie is a Russian-speaking Christian church in Winter Park, Orlando area. Sunday worship at 1 PM; Thursday Bible study and prayer at 7 PM. 701 Formosa Avenue.">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <link rel="canonical" href="https://orlandorussianchurch.com/">
+<link rel="alternate" hreflang="en" href="https://orlandorussianchurch.com/">
+<link rel="alternate" hreflang="ru" href="https://orlandorussianchurch.com/ru/">
+<link rel="alternate" hreflang="x-default" href="https://orlandorussianchurch.com/">
 <meta property="og:type" content="website">
-<meta property="og:locale" content="ru_RU">
-<meta property="og:title" content="Церковь «Спасение» — русскоязычная церковь в Орландо">
-<meta property="og:description" content="Богослужения в Winter Park: воскресенье в 13:00, встреча по четвергам в 19:00.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:title" content="Spasenie Church | Russian-Speaking Church in Orlando">
+<meta property="og:description" content="Russian-language worship in Winter Park every Sunday at 1 PM, with Bible study and prayer on Thursdays at 7 PM.">
 <meta property="og:url" content="https://orlandorussianchurch.com/">
 <meta property="og:image" content="https://orlandorussianchurch.com/img/001.jpg">
 <meta name="twitter:card" content="summary_large_image">
@@ -19,7 +23,8 @@
   "@context":"https://schema.org",
   "@type":"Church",
   "@id":"https://orlandorussianchurch.com/#church",
-  "name":"Церковь Спасение",
+  "name":"Spasenie Church",
+  "alternateName":"Церковь «Спасение»",
   "url":"https://orlandorussianchurch.com/",
   "image":"https://orlandorussianchurch.com/img/001.jpg",
   "telephone":"+1-407-900-3456",
@@ -57,9 +62,9 @@ a{color:inherit}
 img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--pine);outline-offset:3px}
 .wrap{width:min(1080px,100% - 2.5rem);margin-inline:auto}
-.en{display:none}
-body.lang-en .ru{display:none}
-body.lang-en .en{display:inline}
+.ru{display:none}
+body.lang-ru .en{display:none}
+body.lang-ru .ru{display:inline}
 
 /* header */
 .site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -72,8 +77,8 @@ body.lang-en .en{display:inline}
 .nav a:hover{color:var(--ink)}
 .nav a.on{color:var(--ink);border-color:var(--pine)}
 .lang{display:flex;gap:.4rem}
-.lang button{font:inherit;font-size:.85rem;background:none;border:0;color:var(--stone);cursor:pointer;padding:.2rem .1rem}
-.lang button[aria-pressed="true"]{color:var(--ink);font-weight:600;box-shadow:inset 0 -1px 0 var(--pine)}
+.lang a{font:inherit;font-size:.85rem;color:var(--stone);text-decoration:none;padding:.2rem .1rem}
+body.lang-ru .lang a[data-lang="ru"],body.lang-en .lang a[data-lang="en"]{color:var(--ink);font-weight:600;box-shadow:inset 0 -1px 0 var(--pine)}
 .burger{display:none;background:none;border:0;color:var(--ink);font-size:1.4rem;cursor:pointer;line-height:1;padding:.2rem .4rem}
 @media (max-width:900px){
   .nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:.5rem 1.25rem 1rem}
@@ -242,12 +247,12 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
 </style>
 <script src="/analytics.js" defer></script>
 </head>
-<body>
+<body class="lang-en">
 
 <header class="site-head">
   <div class="wrap head-in">
     <a class="brand" href="#/"><img class="mark" src="img/000.jpg" alt=""><span class="ru">Спасение</span><span class="en">Spasenie</span> <i><span class="ru">· Орландо</span><span class="en">· Orlando</span></i></a>
-    <button class="burger" type="button" aria-label="Меню">☰</button>
+    <button class="burger" type="button" aria-label="Menu">☰</button>
     <nav class="nav">
       <a href="#/" data-route="/"><span class="ru">Главная</span><span class="en">Home</span></a>
       <a href="#/novosti" data-route="/novosti"><span class="ru">Новости</span><span class="en">News</span></a>
@@ -256,15 +261,21 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
       <a href="#/kontakty" data-route="/kontakty"><span class="ru">Контакты</span><span class="en">Contact</span></a>
     </nav>
     <div class="lang" role="group" aria-label="Язык / Language">
-      <button type="button" data-lang="ru" aria-pressed="true">Рус</button>
-      <button type="button" data-lang="en" aria-pressed="false">Eng</button>
+      <a data-lang="ru" href="/ru/" hreflang="ru">Рус</a>
+      <a data-lang="en" href="/" hreflang="en">Eng</a>
     </div>
   </div>
 </header>
 
-<main id="app"></main>
+<main id="app">
+  <section class="wrap" aria-label="Visitor information">
+    <h1>Russian-speaking church in the Orlando area</h1>
+    <p>Spasenie Church meets at 701 Formosa Avenue, Winter Park, Florida. Sunday worship begins at 1:00 PM. The Thursday Bible study and prayer meeting begins at 7:00 PM. Services are held primarily in Russian.</p>
+    <p><a href="/ru/">Русская версия</a> · <a href="/en/articles/">English articles</a></p>
+  </section>
+</main>
 
-<div class="endbanner"><img src="img/001.jpg" alt="Церковь «Спасение» — воскресенье 13:00, четверг 19:00"></div>
+<div class="endbanner"><img src="img/001.jpg" alt="Spasenie Church — Sunday at 1 PM, Thursday at 7 PM"></div>
 
 <footer class="site-foot">
   <div class="wrap foot-in">
@@ -381,7 +392,7 @@ const ARTICLES = [
 /* ====================== дальше код, править не нужно ====================== */
 const MAPS = "https://maps.google.com/?q=701+Formosa+Avenue+Winter+Park+FL+32789";
 const T = { ru: 0, en: 1 };
-let lang = "ru";
+let lang = location.pathname.startsWith("/ru/") ? "ru" : "en";
 
 function attr(s){ return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;"); }
 
@@ -514,14 +525,14 @@ function pageHome(){
 
     <div class="wrap schedule-strip">
       <div class="slot">
-        <div class="t">13:00</div>
+        <div class="t">${bi("13:00","1 PM")}</div>
         <div class="meta">
           <b>${bi("Воскресенье","Sunday")}</b>
           <span>${bi("Богослужение: пение, проповедь, общий обед после службы","Worship service: singing, preaching, and lunch together afterwards")}</span>
         </div>
       </div>
       <div class="slot">
-        <div class="t">19:00</div>
+        <div class="t">${bi("19:00","7 PM")}</div>
         <div class="meta">
           <b>${bi("Четверг","Thursday")}</b>
           <span>${bi("Разбор Писания и совместная молитва","Scripture study and prayer together")}</span>
@@ -991,6 +1002,7 @@ function render(){
 
 function applyLang(){
   document.body.classList.toggle("lang-en", lang === "en");
+  document.body.classList.toggle("lang-ru", lang === "ru");
   document.documentElement.lang = lang;
   document.querySelectorAll("[data-articles-link]").forEach(el => {
     el.href = lang === "en" ? "/en/articles/" : "/stati/";
@@ -1003,22 +1015,12 @@ function applyLang(){
   });
 }
 
-document.querySelectorAll(".lang button").forEach(b => {
-  b.addEventListener("click", () => {
-    lang = b.dataset.lang;
-    document.querySelectorAll(".lang button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.lang === lang)));
-    try { localStorage.setItem("spasenie-lang", lang); } catch(e){}
-    applyLang();
-  });
+document.querySelectorAll(".lang a").forEach(a => {
+  a.addEventListener("click", () => { a.href = (a.dataset.lang === "ru" ? "/ru/" : "/") + location.hash; });
 });
 document.querySelector(".burger").addEventListener("click", () => {
   document.querySelector(".nav").classList.toggle("open");
 });
-try {
-  const s = localStorage.getItem("spasenie-lang");
-  if (s === "en") { lang = "en"; document.querySelectorAll(".lang button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.lang === "en"))); }
-} catch(e){}
-
 window.addEventListener("hashchange", render);
 render();
 
