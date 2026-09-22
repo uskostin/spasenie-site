@@ -79,7 +79,7 @@ body.lang-ru .ru{display:inline}
 .lang{display:flex;gap:.4rem}
 .lang a{font:inherit;font-size:.85rem;color:var(--stone);text-decoration:none;padding:.2rem .1rem}
 body.lang-ru .lang a[data-lang="ru"],body.lang-en .lang a[data-lang="en"]{color:var(--ink);font-weight:600;box-shadow:inset 0 -1px 0 var(--pine)}
-.burger{display:none;background:none;border:0;color:var(--ink);font-size:1.4rem;cursor:pointer;line-height:1;padding:.2rem .4rem}
+.burger{display:none;background:none;border:0;color:var(--ink);font-size:1.4rem;cursor:pointer;line-height:1;min-width:44px;min-height:44px}
 @media (max-width:900px){
   .nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:.5rem 1.25rem 1rem}
   .nav.open{display:flex}
@@ -230,7 +230,9 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
 .hero--video .btn-a{background:#F4F7F3;color:#12201A}
 .hero--video .btn-b{border-color:rgba(244,247,243,.5);color:#F4F7F3}
 .hero--video .btn-b:hover{border-color:#F4F7F3}
-@media (prefers-reduced-motion:reduce){.hero-video video{display:none}}
+.hero-video-toggle{position:absolute;z-index:2;right:1.25rem;bottom:1.25rem;min-width:44px;min-height:44px;border:1px solid rgba(244,247,243,.7);border-radius:8px;background:rgba(12,24,19,.72);color:#fff;cursor:pointer;font:inherit}
+.hero-video-toggle:focus-visible,.burger:focus-visible{outline:3px solid var(--pine);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.hero-video{background:#101a16 url('/img/001.jpg') center/cover no-repeat}.hero-video video{display:none}}
 
 /* видео в новостях */
 .newsvid{display:block;width:100%;max-width:22rem;margin:1.2rem 0 0;border-radius:12px;border:1px solid var(--line);background:#000}
@@ -252,8 +254,8 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
 <header class="site-head">
   <div class="wrap head-in">
     <a class="brand" href="#/"><img class="mark" src="img/000.jpg" alt=""><span class="ru">Спасение</span><span class="en">Spasenie</span> <i><span class="ru">· Орландо</span><span class="en">· Orlando</span></i></a>
-    <button class="burger" type="button" aria-label="Menu">☰</button>
-    <nav class="nav">
+    <button class="burger" type="button" aria-label="Menu" aria-controls="main-nav" aria-expanded="false">☰</button>
+    <nav class="nav" id="main-nav">
       <a href="#/" data-route="/"><span class="ru">Главная</span><span class="en">Home</span></a>
       <a href="#/novosti" data-route="/novosti"><span class="ru">Новости</span><span class="en">News</span></a>
       <a href="/stati/" data-route="/stati" data-articles-link><span class="ru">Статьи</span><span class="en">Articles</span></a>
@@ -308,6 +310,9 @@ const NEWS = [
   {
     date: "2026-09-20",
     photo: "img/sunday-service-invitation.jpg",
+    image_en: "img/001.jpg",
+    alt_ru: "Приглашение на воскресное богослужение в церкви «Спасение»",
+    alt_en: "Spasenie Church service schedule",
     ru: { title: "Приглашаем на воскресное служение",
           text: "«Возрадовался я, когда сказали мне: “пойдем в дом Господень”». Псалом 121:1. Ждём вас и вашу семью каждое воскресенье в 13:00 по адресу 701 Formosa Ave, Winter Park. I-4, Exit 87." },
     en: { title: "Join us for Sunday worship",
@@ -316,6 +321,9 @@ const NEWS = [
   {
     date: "2026-09-19",
     photo: POSTER_ORKESTR,
+    image_en: POSTER_ORKESTR,
+    alt_ru: "Духовой оркестр в церкви",
+    alt_en: "Brass band playing in church",
     video: VIDEO_ORKESTR,
     ru: { title: "В гостях — духовой оркестр церкви «Спасение» ЕХБ",
           text: "На днях у нас в гостях был духовой оркестр церкви «Спасение» ЕХБ из Edgewood, штат Вашингтон. Рады приветствовать наших дорогих гостей. Пусть музыка звучит во славу Господа!" },
@@ -325,6 +333,9 @@ const NEWS = [
   {
     date: "2026-08-31",
     photo: POSTER,
+    image_en: "img/harvest-family-table.jpg",
+    alt_ru: "Афиша Праздника Жатвы",
+    alt_en: "Harvest table with fruit and autumn decorations",
     ru: { title: "Приглашаем на Праздник Жатвы",
           text: "В воскресенье 27 сентября в 13:00 будем благодарить Бога за Его щедрость и благословения, а после служения разделим праздничный обед. Приходите всей семьёй." },
     en: { title: "Join us for the Harvest Festival",
@@ -405,8 +416,10 @@ function fmtDate(iso){
   return bi(ru, en);
 }
 
-function photoBlock(p){
-  if (p) return '<div class="shot"><img src="'+p+'" alt=""></div>';
+function newsImage(n){ return lang === "en" ? (n.image_en || n.photo) : n.photo; }
+function newsAlt(n){ return esc(lang === "en" ? (n.alt_en || "") : (n.alt_ru || "")); }
+function photoBlock(p, alt=""){
+  if (p) return '<div class="shot"><img src="'+p+'" alt="'+alt+'" loading="lazy"></div>';
   return '<div class="shot"><div class="ph">'+bi("место для фотографии","photo goes here")+'</div></div>';
 }
 
@@ -466,7 +479,7 @@ function homeNews(){
 
   const cards = recent.map(n => `
     <a class="ncard" href="#/novosti">
-      <span class="ncard-img">${n.photo ? '<img src="'+n.photo+'" alt="">' : '<span class="ph">'+bi("фотография","photo")+'</span>'}</span>
+      <span class="ncard-img">${newsImage(n) ? '<img src="'+newsImage(n)+'" alt="'+newsAlt(n)+'" loading="lazy">' : '<span class="ph">'+bi("фотография","photo")+'</span>'}</span>
       <time>${fmtDate(n.date)}</time>
       <h3>${bi(esc(n.ru.title), esc(n.en.title))}</h3>
       <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
@@ -507,8 +520,9 @@ function pageHome(){
   return `
   <section class="hero hero--video">
     <div class="hero-video" aria-hidden="true">
-      <video src="${HERO_VIDEO}" autoplay muted loop playsinline preload="auto" tabindex="-1"></video>
+      <video src="${HERO_VIDEO}" autoplay muted loop playsinline preload="metadata" poster="img/001.jpg" tabindex="-1"></video>
     </div>
+    <button class="hero-video-toggle" type="button" aria-label="${lang === "ru" ? "Приостановить фоновое видео" : "Pause background video"}" aria-pressed="false">Ⅱ</button>
     <div class="wrap hero-top">
       <div>
         <p class="kicker">${bi("Русскоязычная церковь в Уинтер-Парке, Флорида","Russian-speaking church in Winter Park, Florida")}</p>
@@ -575,7 +589,7 @@ function pageNews(){
         ${n.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
         <h2>${bi(esc(n.ru.title), esc(n.en.title))}</h2>
         <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
-        ${n.video ? videoBlock(n.video, n.photo) : photoBlock(n.photo)}
+        ${n.video ? videoBlock(n.video, newsImage(n)) : photoBlock(newsImage(n), newsAlt(n))}
       </div>
     </article>`).join("");
 
@@ -994,9 +1008,14 @@ function render(){
   else { html = pageHome(); route = "/"; }
 
   document.getElementById("app").innerHTML = html;
-  document.querySelectorAll(".nav a").forEach(a => a.classList.toggle("on", a.dataset.route === route));
-  document.querySelector(".nav").classList.remove("open");
+  document.querySelectorAll(".nav a").forEach(a => {
+    a.classList.toggle("on", a.dataset.route === route);
+    if (a.dataset.route === route) a.setAttribute("aria-current", "page");
+    else a.removeAttribute("aria-current");
+  });
+  closeMenu();
   applyLang();
+  setupHeroVideo();
   window.scrollTo(0, 0);
 }
 
@@ -1018,9 +1037,43 @@ function applyLang(){
 document.querySelectorAll(".lang a").forEach(a => {
   a.addEventListener("click", () => { a.href = (a.dataset.lang === "ru" ? "/ru/" : "/") + location.hash; });
 });
+function closeMenu(){
+  document.querySelector(".nav").classList.remove("open");
+  document.querySelector(".burger").setAttribute("aria-expanded", "false");
+}
 document.querySelector(".burger").addEventListener("click", () => {
-  document.querySelector(".nav").classList.toggle("open");
+  const open = document.querySelector(".nav").classList.toggle("open");
+  document.querySelector(".burger").setAttribute("aria-expanded", String(open));
+  if (open) document.querySelector(".nav a").focus();
 });
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && document.querySelector(".nav").classList.contains("open")) {
+    closeMenu();
+    document.querySelector(".burger").focus();
+  }
+});
+let heroObserver;
+function setupHeroVideo(){
+  if (heroObserver) heroObserver.disconnect();
+  const hero = document.querySelector(".hero--video");
+  if (!hero) return;
+  const video = hero.querySelector("video");
+  const button = hero.querySelector(".hero-video-toggle");
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  if (reducedMotion.matches) { video.pause(); button.hidden = true; return; }
+  button.addEventListener("click", () => {
+    const pausedByUser = button.getAttribute("aria-pressed") !== "true";
+    button.setAttribute("aria-pressed", String(pausedByUser));
+    button.setAttribute("aria-label", pausedByUser ? (lang === "ru" ? "Воспроизвести фоновое видео" : "Play background video") : (lang === "ru" ? "Приостановить фоновое видео" : "Pause background video"));
+    button.textContent = pausedByUser ? "▶" : "Ⅱ";
+    if (pausedByUser) video.pause(); else video.play().catch(() => {});
+  });
+  heroObserver = new IntersectionObserver(entries => {
+    if (!entries[0].isIntersecting) video.pause();
+    else if (button.getAttribute("aria-pressed") !== "true") video.play().catch(() => {});
+  }, {threshold: 0.1});
+  heroObserver.observe(hero);
+}
 window.addEventListener("hashchange", render);
 render();
 

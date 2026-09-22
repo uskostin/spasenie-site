@@ -57,6 +57,14 @@ function send(res, code, body, type, cache) {
   res.end(body);
 }
 
+function notFound(res, pathname) {
+  const russian = pathname.startsWith("/ru/") || pathname.startsWith("/stati/");
+  const page = russian ? "404-ru.html" : "404.html";
+  fs.readFile(path.join(ROOT, page), (error, html) => {
+    send(res, 404, error ? "Not found" : html, error ? "text/plain; charset=utf-8" : "text/html; charset=utf-8", "no-store");
+  });
+}
+
 http.createServer((req, res) => {
   let pathname;
   try {
@@ -84,20 +92,20 @@ http.createServer((req, res) => {
 
   const normalizedPathname = pathname.endsWith("/") ? pathname : `${pathname}/`;
   if (UNPUBLISHED_PATHS.has(normalizedPathname)) {
-    return send(res, 404, "Not found", "text/plain; charset=utf-8", "no-store");
+    return notFound(res, pathname);
   }
 
   const relative = pathname === "/" ? "index.html" : pathname.replace(/^\/+/, "");
   const file = path.resolve(ROOT, relative);
   if (file !== ROOT && !file.startsWith(ROOT + path.sep)) {
-    return send(res, 404, "Not found", "text/plain; charset=utf-8", "no-store");
+    return notFound(res, pathname);
   }
 
   fs.stat(file, (statError, stats) => {
     const target = !statError && stats.isDirectory() ? path.join(file, "index.html") : file;
     fs.readFile(target, (readError, data) => {
       if (readError) {
-        return send(res, 404, "Not found", "text/plain; charset=utf-8", "no-store");
+        return notFound(res, pathname);
       }
       const ext = path.extname(target).toLowerCase();
       const cache = ext === ".html" ? "public, max-age=600" : "public, max-age=31536000, immutable";
