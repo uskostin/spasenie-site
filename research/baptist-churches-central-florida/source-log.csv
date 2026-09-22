@@ -1,0 +1,5 @@
+source_id,source_name,source_url,source_scope,source_published_at,checked_at,limitation
+goba-members,Greater Orlando Baptist Association member churches,https://goba.sbcgc.net/,Association members in Greater Orlando,unknown,2026-09-22,Not a census of all Baptist churches; current status of each congregation needs direct verification
+flbaptist-finder,Florida Baptist Convention church finder,https://flbaptist.org/resources/find-a-church/,Florida Baptist Convention,unknown,2026-09-22,Not a complete census of Baptist churches and listings need current-status checks
+flbaptist-central-2021,Florida Baptist Convention Central Region Churches,https://flbaptist.org/central-region-churches/,Convention Central Region,2021-01-11,2026-09-22,Historical list and regional scope exceeds Orange and Seminole counties
+bwa-members,Baptist World Alliance members,https://baptistworld.org/members/,Member associations worldwide,unknown,2026-09-22,Lists associations rather than individual local congregations

@@ -13,6 +13,7 @@ const TYPES = {
   ".css": "text/css; charset=utf-8",
   ".js": "text/javascript; charset=utf-8",
   ".json": "application/json; charset=utf-8",
+  ".csv": "text/csv; charset=utf-8",
   ".xml": "application/xml; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
   ".svg": "image/svg+xml",
@@ -108,7 +109,7 @@ http.createServer((req, res) => {
         return notFound(res, pathname);
       }
       const ext = path.extname(target).toLowerCase();
-      const cache = ext === ".html" ? "public, max-age=600" : "public, max-age=31536000, immutable";
+      const cache = ext === ".html" || ext === ".csv" ? "public, max-age=600" : "public, max-age=31536000, immutable";
       send(res, 200, data, TYPES[ext] || "application/octet-stream", cache);
     });
   });
