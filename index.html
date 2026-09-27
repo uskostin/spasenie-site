@@ -236,6 +236,9 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
 
 /* видео в новостях */
 .newsvid{display:block;width:100%;max-width:22rem;margin:1.2rem 0 0;border-radius:12px;border:1px solid var(--line);background:#000}
+.news-live{width:100%;max-width:34rem;margin:1.2rem 0 0}
+.news-live iframe{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:12px;background:#000}
+.news-live a{display:inline-block;margin-top:.7rem;color:var(--pine)}
 .gal-head{margin:2.4rem 0 1rem;font-size:1.05rem;font-weight:600;color:var(--stone)}
 .gal img{cursor:zoom-in;transition:opacity .15s}
 .gal img:hover{opacity:.9}
@@ -307,6 +310,18 @@ const VIDEO_ORKESTR = "video/1.mp4";
 const POSTER_ORKESTR = "img/003.jpg";
 
 const NEWS = [
+  {
+    date: "2026-09-27",
+    photo: "https://i.ytimg.com/vi/KqUBtTlSKrU/hqdefault.jpg",
+    image_en: "https://i.ytimg.com/vi/KqUBtTlSKrU/hqdefault.jpg",
+    alt_ru: "Обложка прямого эфира воскресного богослужения церкви «Спасение»",
+    alt_en: "Spasenie Church Sunday service livestream thumbnail",
+    youtube: "KqUBtTlSKrU",
+    ru: { title: "Воскресное богослужение 27 сентября — прямой эфир",
+          text: "Смотрите трансляцию воскресного богослужения церкви «Спасение» от 27 сентября 2026 года здесь или на нашем канале YouTube." },
+    en: { title: "Sunday service on September 27 — livestream",
+          text: "Watch the broadcast of Spasenie Church's Sunday service from September 27, 2026, here or on our YouTube channel." }
+  },
   {
     date: "2026-09-27",
     photo: "img/harvest-preparations-2026.jpg",
@@ -593,6 +608,11 @@ function videoBlock(src, poster){
   return `<video class="newsvid" src="${src}" ${poster ? 'poster="'+poster+'"' : ''} controls playsinline preload="none"></video>`;
 }
 
+function youtubeBlock(id){
+  const url = `https://www.youtube.com/watch?v=${id}`;
+  return `<div class="news-live"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${bi("Прямой эфир церкви «Спасение»","Spasenie Church livestream")}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><a href="${url}" target="_blank" rel="noopener noreferrer">${bi("Открыть эфир на YouTube","Watch on YouTube")}</a></div>`;
+}
+
 function pageNews(){
   const items = NEWS.map(n => `
     <article class="post">
@@ -601,7 +621,7 @@ function pageNews(){
         ${n.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
         <h2>${bi(esc(n.ru.title), esc(n.en.title))}</h2>
         <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
-        ${n.video ? videoBlock(n.video, newsImage(n)) : photoBlock(newsImage(n), newsAlt(n))}
+        ${n.youtube ? youtubeBlock(n.youtube) : n.video ? videoBlock(n.video, newsImage(n)) : photoBlock(newsImage(n), newsAlt(n))}
       </div>
     </article>`).join("");
 
