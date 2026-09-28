@@ -324,6 +324,7 @@ const NEWS = [
   },
   {
     date: "2026-09-27",
+    eventDate: "2026-09-27",
     photo: "img/harvest-preparations-2026.jpg",
     image_en: "img/harvest-preparations-2026.jpg",
     alt_ru: "Подготовка украшений к Празднику Жатвы в церкви «Спасение»",
@@ -336,6 +337,7 @@ const NEWS = [
   },
   {
     date: "2026-09-25",
+    eventDate: "2026-09-27",
     photo: POSTER,
     image_en: "img/harvest-family-table.jpg",
     alt_ru: "Афиша Праздника Жатвы церкви «Спасение» 27 сентября",
@@ -486,7 +488,10 @@ const RECENT_DAYS = 90;
 
 function homeNews(){
   const now = Date.now();
-  const recent = NEWS.filter(n => now - new Date(n.date + "T12:00:00").getTime() < RECENT_DAYS*864e5).slice(0,3);
+  const recent = NEWS.filter(n =>
+    now - new Date(n.date + "T12:00:00").getTime() < RECENT_DAYS*864e5 &&
+    (!n.eventDate || now <= new Date(n.eventDate + "T23:59:59").getTime())
+  ).slice(0,3);
 
   if (!recent.length){
     return `
