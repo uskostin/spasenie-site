@@ -73,17 +73,17 @@ body.lang-ru .ru{display:inline}
 .brand .mark{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none}
 .brand i{font-style:normal;color:var(--stone);font-weight:400}
 .nav{display:flex;gap:1.3rem}
-.nav a{text-decoration:none;color:var(--stone);font-size:.93rem;padding:.15rem 0;border-bottom:1px solid transparent}
+.nav a{display:inline-flex;align-items:center;min-height:44px;text-decoration:none;color:var(--stone);font-size:.93rem;padding:0 .35rem;border-bottom:1px solid transparent}
 .nav a:hover{color:var(--ink)}
 .nav a.on{color:var(--ink);border-color:var(--pine)}
 .lang{display:flex;gap:.4rem}
-.lang a{font:inherit;font-size:.85rem;color:var(--stone);text-decoration:none;padding:.2rem .1rem}
+.lang a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;font:inherit;font-size:.85rem;color:var(--stone);text-decoration:none;padding:0 .25rem}
 body.lang-ru .lang a[data-lang="ru"],body.lang-en .lang a[data-lang="en"]{color:var(--ink);font-weight:600;box-shadow:inset 0 -1px 0 var(--pine)}
 .burger{display:none;background:none;border:0;color:var(--ink);font-size:1.4rem;cursor:pointer;line-height:1;min-width:44px;min-height:44px}
 @media (max-width:900px){
   .nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;gap:0;padding:.5rem 1.25rem 1rem}
   .nav.open{display:flex}
-  .nav a{padding:.6rem 0;border-bottom:1px solid var(--line)}
+  .nav a{min-height:48px;padding:.6rem .35rem;border-bottom:1px solid var(--line)}
   .burger{display:block}
 }
 
