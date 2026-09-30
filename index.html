@@ -243,6 +243,7 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
 .hero--video .btn-b{border-color:rgba(244,247,243,.5);color:#F4F7F3}
 .hero--video .btn-b:hover{border-color:#F4F7F3}
 .hero-video-toggle{position:absolute;z-index:2;right:1.25rem;bottom:1.25rem;min-width:44px;min-height:44px;border:1px solid rgba(244,247,243,.7);border-radius:8px;background:rgba(12,24,19,.72);color:#fff;cursor:pointer;font:inherit}
+.hero-video-toggle[aria-pressed="true"]{padding:0 1rem}
 .hero-video-toggle:focus-visible,.burger:focus-visible{outline:3px solid var(--pine);outline-offset:3px}
 @media (min-width:901px){
   .hero--video{min-height:clamp(32rem,calc(100svh - 65px),46rem);display:flex;align-items:center}
@@ -258,8 +259,9 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
   .hero--video .slot{grid-template-columns:minmax(0,7.5rem) 1fr}
   .hero--video .slot .t{font-size:clamp(2.3rem,7vw,3rem);white-space:nowrap}
   .hero--video{padding-top:1.5rem;padding-bottom:4.5rem}
+  .hero-video-toggle[aria-pressed="true"]{right:50%;transform:translateX(50%);white-space:nowrap}
 }
-@media (prefers-reduced-motion:reduce){.hero-video{background:#101a16 url('/img/001.jpg') center/cover no-repeat}.hero-video video{display:none}}
+@media (prefers-reduced-motion:reduce){.hero-video{background:#101a16 url('/img/001.jpg') center/cover no-repeat}}
 
 /* видео в новостях */
 .newsvid{display:block;width:100%;max-width:22rem;margin:1.2rem 0 0;border-radius:12px;border:1px solid var(--line);background:#000}
@@ -580,7 +582,7 @@ function pageHome(){
   <section class="hero hero--video">
     <div class="hero-video" aria-hidden="true">
       <video autoplay muted loop playsinline preload="metadata" poster="/img/001.jpg" tabindex="-1">
-        <source src="/video/0-mobile.mp4" media="(max-width: 700px)" type="video/mp4">
+        <source src="/video/0-mobile-range.mp4" media="(max-width: 700px)" type="video/mp4">
         <source src="${HERO_VIDEO}" type="video/mp4">
       </video>
     </div>
@@ -1132,16 +1134,16 @@ function setupHeroVideo(){
   const video = hero.querySelector("video");
   const button = hero.querySelector(".hero-video-toggle");
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-  if (reducedMotion.matches) { video.pause(); button.hidden = true; return; }
-  let pausedByUser = false;
+  let pausedByUser = reducedMotion.matches;
   const updateButton = paused => {
     button.setAttribute("aria-pressed", String(paused));
     button.setAttribute("aria-label", paused ? (lang === "ru" ? "Воспроизвести фоновое видео" : "Play background video") : (lang === "ru" ? "Приостановить фоновое видео" : "Pause background video"));
-    button.textContent = paused ? "▶" : "Ⅱ";
+    button.textContent = paused ? (lang === "ru" ? "▶ Смотреть видео" : "▶ Play video") : "Ⅱ";
   };
   const playVideo = () => video.play().catch(() => updateButton(true));
   video.addEventListener("playing", () => updateButton(false));
   video.addEventListener("pause", () => updateButton(true));
+  if (pausedByUser) { video.pause(); updateButton(true); }
   button.addEventListener("click", () => {
     if (video.paused) { pausedByUser = false; playVideo(); }
     else { pausedByUser = true; video.pause(); }

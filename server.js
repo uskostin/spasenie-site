@@ -58,6 +58,45 @@ function send(res, code, body, type, cache) {
   res.end(body);
 }
 
+function sendVideo(req, res, file, size) {
+  const headers = {
+    ...HEADERS,
+    "Content-Type": "video/mp4",
+    "Cache-Control": "public, max-age=31536000, immutable",
+    "Accept-Ranges": "bytes"
+  };
+  let start = 0;
+  let end = size - 1;
+  let status = 200;
+  if (req.headers.range) {
+    const match = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range.trim());
+    if (!match || (!match[1] && !match[2])) {
+      res.writeHead(416, { ...headers, "Content-Range": `bytes */${size}` });
+      return res.end();
+    }
+    if (match[1]) {
+      start = Number(match[1]);
+      if (match[2]) end = Number(match[2]);
+    } else {
+      const suffix = Number(match[2]);
+      start = Math.max(0, size - suffix);
+    }
+    if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start >= size || end < start || (!match[1] && Number(match[2]) === 0)) {
+      res.writeHead(416, { ...headers, "Content-Range": `bytes */${size}` });
+      return res.end();
+    }
+    end = Math.min(end, size - 1);
+    status = 206;
+    headers["Content-Range"] = `bytes ${start}-${end}/${size}`;
+  }
+  headers["Content-Length"] = end - start + 1;
+  res.writeHead(status, headers);
+  if (req.method === "HEAD") return res.end();
+  const stream = fs.createReadStream(file, { start, end });
+  stream.on("error", () => res.destroy());
+  stream.pipe(res);
+}
+
 function notFound(res, pathname) {
   const russian = pathname.startsWith("/ru/") || pathname.startsWith("/stati/");
   const page = russian ? "404-ru.html" : "404.html";
@@ -104,6 +143,9 @@ http.createServer((req, res) => {
 
   fs.stat(file, (statError, stats) => {
     const target = !statError && stats.isDirectory() ? path.join(file, "index.html") : file;
+    if (!statError && stats.isFile() && path.extname(target).toLowerCase() === ".mp4") {
+      return sendVideo(req, res, target, stats.size);
+    }
     fs.readFile(target, (readError, data) => {
       if (readError) {
         return notFound(res, pathname);
