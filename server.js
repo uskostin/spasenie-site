@@ -50,7 +50,7 @@ function russianHome(html) {
     .replace('Spasenie Church meets at 701 Formosa Avenue, Winter Park, Florida. Sunday worship begins at 1:00 PM. The Thursday Bible study and prayer meeting begins at 7:00 PM. Services are held primarily in Russian.', 'Церковь «Спасение» собирается по адресу 701 Formosa Avenue, Winter Park, Florida. Воскресное богослужение начинается в 13:00. Изучение Библии и молитва по четвергам начинаются в 19:00. Основной язык встреч — русский.')
     .replace('<a href="/ru/">Русская версия</a> · <a href="/en/articles/">English articles</a>', '<a href="/stati/">Статьи на русском</a> · <a href="/">English homepage</a>')
     .replace(/(["'])img\//g, '$1/img/')
-    .replace(/(["'])video\//g, '$1/video/');
+    .replace(/(["'])video\/([^"']+\.(?:mp4|webm|ogg))\1/g, '$1/video/$2$1');
 }
 
 function send(res, code, body, type, cache) {
