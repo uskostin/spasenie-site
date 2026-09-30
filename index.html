@@ -86,6 +86,7 @@ body.lang-ru .lang a[data-lang="ru"],body.lang-en .lang a[data-lang="en"]{color:
   .nav a{min-height:48px;padding:.6rem .35rem;border-bottom:1px solid var(--line)}
   .burger{display:block}
 }
+@media (max-width:420px){.head-in{gap:.5rem}.brand i{display:none}}
 
 /* hero */
 .hero{padding:clamp(3rem,8vw,6rem) 0 clamp(2.5rem,5vw,4rem)}
@@ -221,9 +222,16 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
 .gal-cards img{aspect-ratio:auto;height:auto;object-fit:contain;background:var(--paper)}
 
 /* первый экран с видеофоном */
-.hero--video{position:relative;overflow:hidden;background:#101a16;padding:clamp(3.5rem,8vw,6.5rem) 0 clamp(3rem,6vw,4.5rem)}
+.hero--video{position:relative;overflow:hidden;background:#101a16;padding:clamp(2rem,5vw,3.25rem) 0 clamp(2.5rem,4vw,3rem)}
 .hero--video>.wrap{position:relative;z-index:1}
-.hero--video .hero-top>div{max-width:44rem}
+.hero--video .hero-top{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(2rem,5vw,4rem);align-items:center;margin-top:0}
+.hero--video .hero-top>div:first-child{max-width:44rem}
+.hero--video .kicker{margin-bottom:1rem}
+.hero--video .lead{margin-bottom:1.25rem}
+.hero--video .schedule-strip{margin-top:0}
+.hero--video .slot{gap:1rem;align-items:center;padding:.85rem 0;margin:0}
+.hero--video .slot .t{font-size:clamp(3rem,5vw,4.5rem)}
+.hero--video .slot .meta{padding-bottom:0}
 .hero-video{position:absolute;inset:0;z-index:0}
 .hero-video video{width:100%;height:100%;object-fit:cover;display:block}
 .hero-video::after{content:"";position:absolute;inset:0;
@@ -236,6 +244,12 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
 .hero--video .btn-b:hover{border-color:#F4F7F3}
 .hero-video-toggle{position:absolute;z-index:2;right:1.25rem;bottom:1.25rem;min-width:44px;min-height:44px;border:1px solid rgba(244,247,243,.7);border-radius:8px;background:rgba(12,24,19,.72);color:#fff;cursor:pointer;font:inherit}
 .hero-video-toggle:focus-visible,.burger:focus-visible{outline:3px solid var(--pine);outline-offset:3px}
+@media (max-width:900px){
+  .hero--video .hero-top{grid-template-columns:minmax(0,1fr);gap:1rem}
+  .hero--video .slot{grid-template-columns:minmax(0,7.5rem) 1fr}
+  .hero--video .slot .t{font-size:clamp(2.3rem,7vw,3rem);white-space:nowrap}
+  .hero--video{padding-top:1.5rem;padding-bottom:4.5rem}
+}
 @media (prefers-reduced-motion:reduce){.hero-video{background:#101a16 url('/img/001.jpg') center/cover no-repeat}.hero-video video{display:none}}
 
 /* видео в новостях */
@@ -561,19 +575,17 @@ function pageHome(){
     <button class="hero-video-toggle" type="button" aria-label="${lang === "ru" ? "Приостановить фоновое видео" : "Pause background video"}" aria-pressed="false">Ⅱ</button>
     <div class="wrap hero-top">
       <div>
-        <p class="kicker">${bi("Русскоязычная церковь в Уинтер-Парке, Флорида","Russian-speaking church in Winter Park, Florida")}</p>
+        <p class="kicker">${bi("Русскоязычная церковь · Winter Park","Russian-speaking church · Winter Park")}</p>
         <h1>${bi("Приходите в воскресенье и оставайтесь на обед","Come on Sunday and join us for lunch")}</h1>
         <p class="lead">${bi(
-          "701 Formosa Avenue, Winter Park. Регистрироваться не нужно, дресс-кода нет. Служение идёт на русском языке и длится около полутора часов.",
+          "701 Formosa Avenue, Winter Park. Служение на русском языке, около 90 минут. Без регистрации и дресс-кода.",
           "701 Formosa Avenue, Winter Park. No sign-up, no dress code. Services are in Russian and last about 90 minutes.")}</p>
         <div class="btns">
           <a class="btn btn-a" href="${MAPS}" target="_blank" rel="noopener">${bi("Построить маршрут","Get directions")}</a>
           <a class="btn btn-b" href="#/o-cerkvi">${bi("О церкви","About us")}</a>
         </div>
       </div>
-    </div>
-
-    <div class="wrap schedule-strip">
+      <div class="schedule-strip">
       <div class="slot">
         <div class="t">${bi("13:00","1 PM")}</div>
         <div class="meta">
@@ -587,6 +599,7 @@ function pageHome(){
           <b>${bi("Четверг","Thursday")}</b>
           <span>${bi("Разбор Писания и совместная молитва","Scripture study and prayer together")}</span>
         </div>
+      </div>
       </div>
     </div>
   </section>
