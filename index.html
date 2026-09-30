@@ -332,7 +332,7 @@ const EVENT = {
   en: { name: "Harvest Festival", when: "Sunday, September 27, 1:00 PM", note: "with a festive lunch after the service" }
 };
 
-const HERO_VIDEO = "video/0.mp4";
+const HERO_VIDEO = "/video/0.mp4";
 const VIDEO_ORKESTR = "video/1.mp4";
 const POSTER_ORKESTR = "img/003.jpg";
 
@@ -579,7 +579,10 @@ function pageHome(){
   return `
   <section class="hero hero--video">
     <div class="hero-video" aria-hidden="true">
-      <video src="${HERO_VIDEO}" autoplay muted loop playsinline preload="metadata" poster="img/001.jpg" tabindex="-1"></video>
+      <video autoplay muted loop playsinline preload="metadata" poster="/img/001.jpg" tabindex="-1">
+        <source src="/video/0-mobile.mp4" media="(max-width: 700px)" type="video/mp4">
+        <source src="${HERO_VIDEO}" type="video/mp4">
+      </video>
     </div>
     <button class="hero-video-toggle" type="button" aria-label="${lang === "ru" ? "Приостановить фоновое видео" : "Pause background video"}" aria-pressed="false">Ⅱ</button>
     <div class="wrap hero-top">
@@ -1130,16 +1133,22 @@ function setupHeroVideo(){
   const button = hero.querySelector(".hero-video-toggle");
   const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
   if (reducedMotion.matches) { video.pause(); button.hidden = true; return; }
+  let pausedByUser = false;
+  const updateButton = paused => {
+    button.setAttribute("aria-pressed", String(paused));
+    button.setAttribute("aria-label", paused ? (lang === "ru" ? "Воспроизвести фоновое видео" : "Play background video") : (lang === "ru" ? "Приостановить фоновое видео" : "Pause background video"));
+    button.textContent = paused ? "▶" : "Ⅱ";
+  };
+  const playVideo = () => video.play().catch(() => updateButton(true));
+  video.addEventListener("playing", () => updateButton(false));
+  video.addEventListener("pause", () => updateButton(true));
   button.addEventListener("click", () => {
-    const pausedByUser = button.getAttribute("aria-pressed") !== "true";
-    button.setAttribute("aria-pressed", String(pausedByUser));
-    button.setAttribute("aria-label", pausedByUser ? (lang === "ru" ? "Воспроизвести фоновое видео" : "Play background video") : (lang === "ru" ? "Приостановить фоновое видео" : "Pause background video"));
-    button.textContent = pausedByUser ? "▶" : "Ⅱ";
-    if (pausedByUser) video.pause(); else video.play().catch(() => {});
+    if (video.paused) { pausedByUser = false; playVideo(); }
+    else { pausedByUser = true; video.pause(); }
   });
   heroObserver = new IntersectionObserver(entries => {
     if (!entries[0].isIntersecting) video.pause();
-    else if (button.getAttribute("aria-pressed") !== "true") video.play().catch(() => {});
+    else if (!pausedByUser) playVideo();
   }, {threshold: 0.1});
   heroObserver.observe(hero);
 }
