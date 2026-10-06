@@ -340,6 +340,35 @@ const POSTER_ORKESTR = "img/003.jpg";
 
 const NEWS = [
   {
+    date: "2026-10-06",
+    photo: "https://i.ytimg.com/vi/VgB5l9NBMaI/hqdefault.jpg",
+    image_en: "https://i.ytimg.com/vi/VgB5l9NBMaI/hqdefault.jpg",
+    alt_ru: "Обложка видео проповеди Андрея Кравчука о седьмой заповеди",
+    alt_en: "Video thumbnail for Andrey Kravchuk's sermon on the seventh commandment",
+    youtube: "VgB5l9NBMaI",
+    videoLabel: { ru: "Смотреть проповедь на YouTube", en: "Watch the sermon on YouTube" },
+    ru: {
+      title: "Седьмая заповедь: проповедь Андрея Кравчука",
+      text: "Публикуем запись проповеди о верности, ответственности и надежде на прощение. Ниже — редакционное изложение основных мыслей; полную проповедь можно посмотреть на видео.",
+      body: [
+        "В проповеди Андрей Кравчук обращается к седьмой заповеди — «Не прелюбодействуй» (Исход 20:14). Он предлагает говорить о ней открыто и бережно: не как о поводе осудить другого человека, а как о приглашении задуматься о верности и о том, как наши решения влияют на близких.",
+        "Размышляя о браке, проповедник обращается к словам из книги Бытия о том, что муж и жена становятся «одной плотью» (Бытие 2:24). В Евангелии Иисус напоминает об этом же отрывке и говорит о серьёзности брачного союза (Матфея 19:4–6). В изложении проповеди это не сводится к формальности: верность требует честности, заботы и ответственности в повседневной жизни.",
+        "Затем разговор переходит от внешних поступков к внутреннему миру человека. В Нагорной проповеди Иисус говорит не только о действии, но и о намерении сердца (Матфея 5:27–28). Этот отрывок побуждает внимательно относиться к собственным мыслям и поступкам, не превращая разговор о заповеди в обвинение других.",
+        "В завершение звучит и тема надежды. Ссылаясь на Первое послание к Коринфянам, проповедник напоминает: прошлые ошибки не закрывают человеку путь к покаянию и Божьему прощению (1 Коринфянам 6:11). Если эта тема затрагивает вас лично, посмотрите запись целиком и обсудите возникшие вопросы с человеком, которому доверяете. Этот текст — редакционное изложение, а не дословная стенограмма проповеди."
+      ]
+    },
+    en: {
+      title: "The seventh commandment: a sermon by Andrey Kravchuk",
+      text: "Watch a sermon on faithfulness, responsibility, and the hope of forgiveness. The text below is an editorial summary; the full sermon is available in the video (in Russian).",
+      body: [
+        "In this sermon, Andrey Kravchuk reflects on the seventh commandment, “You shall not commit adultery” (Exodus 20:14). He invites listeners to consider it openly and with care—not as an excuse to condemn someone else, but as a way to think about faithfulness and the effect our choices have on those close to us.",
+        "Speaking about marriage, he turns to Genesis, where husband and wife are described as becoming “one flesh” (Genesis 2:24). Jesus returns to that passage in the Gospel and speaks of the seriousness of the marriage bond (Matthew 19:4–6). Faithfulness is more than a formal status: it calls for honesty, care, and responsibility in everyday life.",
+        "The sermon then moves from outward actions to a person's inner life. In the Sermon on the Mount, Jesus speaks not only about an act but also about the intention of the heart (Matthew 5:27–28). This passage encourages reflection on our own thoughts and actions, rather than turning the commandment into an accusation against others.",
+        "The closing message also leaves room for hope. Drawing on First Corinthians, the preacher reminds listeners that past mistakes do not close the door to repentance and God's forgiveness (1 Corinthians 6:11). If this subject touches your life, watch the full recording and discuss your questions with someone you trust. This is an editorial summary, not a word-for-word transcript."
+      ]
+    }
+  },
+  {
     date: "2026-09-27",
     photo: "https://i.ytimg.com/vi/KqUBtTlSKrU/hqdefault.jpg",
     image_en: "https://i.ytimg.com/vi/KqUBtTlSKrU/hqdefault.jpg",
@@ -644,9 +673,9 @@ function videoBlock(src, poster){
   return `<video class="newsvid" src="${src}" ${poster ? 'poster="'+poster+'"' : ''} controls playsinline preload="none"></video>`;
 }
 
-function youtubeBlock(id){
+function youtubeBlock(id, labelRu, labelEn){
   const url = `https://www.youtube.com/watch?v=${id}`;
-  return `<div class="news-live"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${bi("Прямой эфир церкви «Спасение»","Spasenie Church livestream")}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><a href="${url}" target="_blank" rel="noopener noreferrer">${bi("Открыть эфир на YouTube","Watch on YouTube")}</a></div>`;
+  return `<div class="news-live"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${bi(esc(labelRu || "Прямой эфир церкви «Спасение»"),esc(labelEn || "Spasenie Church livestream"))}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><a href="${url}" target="_blank" rel="noopener noreferrer">${bi(esc(labelRu || "Открыть эфир на YouTube"),esc(labelEn || "Watch on YouTube"))}</a></div>`;
 }
 
 function pageNews(){
@@ -657,7 +686,8 @@ function pageNews(){
         ${n.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
         <h2>${bi(esc(n.ru.title), esc(n.en.title))}</h2>
         <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
-        ${n.youtube ? youtubeBlock(n.youtube) : n.video ? videoBlock(n.video, newsImage(n)) : photoBlock(newsImage(n), newsAlt(n))}
+        ${n.youtube ? youtubeBlock(n.youtube, n.videoLabel?.ru, n.videoLabel?.en) : n.video ? videoBlock(n.video, newsImage(n)) : photoBlock(newsImage(n), newsAlt(n))}
+        ${(n[lang]?.body || []).map(p => `<p>${esc(p)}</p>`).join("")}
       </div>
     </article>`).join("");
 
