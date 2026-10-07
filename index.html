@@ -280,6 +280,7 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
 .hidden{display:none !important}
 </style>
 <script src="/analytics.js" defer></script>
+<script src="/home-article-feed.js"></script>
 </head>
 <body class="lang-en">
 
@@ -617,12 +618,10 @@ function homeNews(){
 }
 
 function homeArticles(){
-  const featured = [
-    { ruSlug: "pochemu-baptisty-krestyat-pogruzheniem", enSlug: "why-do-baptists-baptize-by-immersion", ruTitle: "Почему баптисты крестят погружением?", enTitle: "Why do Baptists baptize by immersion?", ruLead: "Смысл погружения, личная вера и вопросы к поместной церкви.", enLead: "Immersion, personal faith, and questions to ask a local church." },
-    { ruSlug: "chto-takoe-kreshchenie-po-vere-u-baptistov", enSlug: "what-is-believers-baptism", ruTitle: "Что такое крещение по вере у баптистов?", enTitle: "What is believers' baptism?", ruLead: "Личная вера и открытое свидетельство по опубликованным источникам.", enLead: "Personal faith and a public response in published Baptist sources." }
-  ];
+  const featured = window.HOME_ARTICLE_FEED || [];
   const cards = featured.map(a => `
-    <a class="ncard" href="${lang === "en" ? "/en/articles/" + a.enSlug : "/stati/" + a.ruSlug}/">
+    <a class="ncard" href="${lang === "en" ? a.enUrl : a.ruUrl}">
+      <time datetime="${attr(a.date)}">${fmtDate(a.date)}</time>
       <h3>${bi(esc(a.ruTitle), esc(a.enTitle))}</h3>
       <p>${bi(esc(a.ruLead), esc(a.enLead))}</p>
     </a>`).join("");
