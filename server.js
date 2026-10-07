@@ -30,6 +30,13 @@ const HEADERS = {
   "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
   "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
 };
+const MUTABLE_DISCOVERY_FILES = new Set([
+  "/robots.txt",
+  "/sitemap.xml",
+  "/llms.txt",
+  "/llms-full.txt",
+  "/home-article-feed.js"
+]);
 
 function russianHome(html) {
   return html
@@ -151,7 +158,9 @@ http.createServer((req, res) => {
         return notFound(res, pathname);
       }
       const ext = path.extname(target).toLowerCase();
-      const cache = ext === ".html" || ext === ".csv" ? "public, max-age=600" : "public, max-age=31536000, immutable";
+      const cache = ext === ".html" || ext === ".csv" || MUTABLE_DISCOVERY_FILES.has(pathname)
+        ? "public, max-age=600"
+        : "public, max-age=31536000, immutable";
       send(res, 200, data, TYPES[ext] || "application/octet-stream", cache);
     });
   });
