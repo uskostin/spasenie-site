@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 
 const root = path.resolve(import.meta.dirname, '..');
 const schedulePath = path.join(root, '.seo-factory', 'schedule.csv');
@@ -60,5 +61,15 @@ for (const row of published) {
 }
 
 if (feed.length < 2) throw new Error('Expected two published bilingual articles in both indexes');
-fs.writeFileSync(outputPath, `// Generated from .seo-factory/schedule.csv and the RU/EN article indexes.\nwindow.HOME_ARTICLE_FEED = ${JSON.stringify(feed, null, 2)};\n`);
+const output = `// Generated from .seo-factory/schedule.csv and the RU/EN article indexes.\nwindow.HOME_ARTICLE_FEED = ${JSON.stringify(feed, null, 2)};\n`;
+fs.writeFileSync(outputPath, output);
+// GoDaddy's CDN may override Cache-Control for .js files. A content-based URL
+// ensures both home languages fetch the fresh feed after each publication.
+const version = createHash('sha256').update(output).digest('hex').slice(0, 12);
+const homePath = path.join(root, 'index.html');
+const home = fs.readFileSync(homePath, 'utf8');
+const scriptTag = /<script src="\/home-article-feed\.js(?:\?v=[^"]*)?"><\/script>/;
+if (!scriptTag.test(home)) throw new Error('Home article feed script tag not found');
+const updatedHome = home.replace(scriptTag, `<script src="/home-article-feed.js?v=${version}"></script>`);
+if (updatedHome !== home) fs.writeFileSync(homePath, updatedHome);
 console.log(`Updated ${outputPath} with ${feed.length} published articles`);
