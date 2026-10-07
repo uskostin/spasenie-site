@@ -171,6 +171,10 @@ section{padding:clamp(3rem,6.5vw,5rem) 0}
 .cards a.long{font-size:.95rem}
 .cards a:hover{color:var(--pine)}
 .cards .small{font-size:.92rem;font-weight:500;color:var(--pine);margin-top:.5rem}
+.contact-map h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:500;letter-spacing:-.02em;margin:0 0 1rem}
+.contact-map iframe{display:block;width:100%;height:clamp(280px,38vw,420px);border:0;border-radius:12px;background:var(--surface)}
+.contact-map p{margin:1rem 0 0;color:var(--stone)}
+.contact-map a{color:var(--pine);font-weight:600;text-underline-offset:.2em}
 
 
 .endbanner{border-top:1px solid var(--line);background:#12333c}
@@ -518,7 +522,8 @@ const ARTICLES = [
 ];
 
 /* ====================== дальше код, править не нужно ====================== */
-const MAPS = "https://maps.google.com/?q=701+Formosa+Avenue+Winter+Park+FL+32789";
+const MAPS = "https://www.google.com/maps/place/Church+Spasenie+-+Russian+Speaking+Baptist+Church/@28.5925785,-81.378021,17z/data=!4m6!3m5!1s0x88e77afda5a71f45:0xa6f61b4d2ab7edd2!8m2!3d28.5925785!4d-81.378021!16s%2Fg%2F1tfczn01";
+const MAP_EMBED = "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3503.2399186915986!2d-81.378021!3d28.5925785!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88e77afda5a71f45%3A0xa6f61b4d2ab7edd2!2sChurch%20Spasenie%20-%20Russian%20Speaking%20Baptist%20Church!5e0!3m2!1sen!2sus!4v1791386300463!5m2!1sen!2sus";
 const T = { ru: 0, en: 1 };
 let lang = location.pathname.startsWith("/ru/") ? "ru" : "en";
 
@@ -1115,6 +1120,11 @@ function pageContacts(){
     <p>${bi("Напишите или позвоните — мы ответим.","Write or call — we will get back to you.")}</p>
   </div></div>
   ${blockContacts()}
+  <section class="contact-map"><div class="wrap">
+    <h2>${bi("Как нас найти","Find us on the map")}</h2>
+    <iframe src="${MAP_EMBED}" title="${bi("Церковь «Спасение» на Google Картах","Spasenie Church on Google Maps")}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <p><a href="${MAPS}" target="_blank" rel="noopener noreferrer">${bi("Открыть карточку церкви в Google Картах","Open the church listing in Google Maps")}</a></p>
+  </div></section>
   <section class="band">
     <div class="wrap split">
       <h2>${bi("Мы в соцсетях","Social")}</h2>
