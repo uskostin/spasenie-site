@@ -171,6 +171,8 @@ section{padding:clamp(3rem,6.5vw,5rem) 0}
 .cards a.long{font-size:.95rem}
 .cards a:hover{color:var(--pine)}
 .cards .small{font-size:.92rem;font-weight:500;color:var(--pine);margin-top:.5rem}
+.contact-before-map{padding-bottom:clamp(.75rem,2vw,1.5rem)}
+.contact-map{padding-top:clamp(.75rem,2vw,1.5rem)}
 .contact-map h2{font-size:clamp(1.5rem,3vw,2rem);font-weight:500;letter-spacing:-.02em;margin:0 0 1rem}
 .contact-map iframe{display:block;width:100%;height:clamp(280px,38vw,420px);border:0;border-radius:12px;background:var(--surface)}
 .contact-map p{margin:1rem 0 0;color:var(--stone)}
@@ -1094,9 +1096,9 @@ function blockGive(){
   </section>`;
 }
 
-function blockContacts(){
+function blockContacts(beforeMap = false){
   return `
-  <section id="kontakty">
+  <section id="kontakty"${beforeMap ? ' class="contact-before-map"' : ''}>
     <div class="wrap split">
       <h2>${bi("Контакты","Contact")}</h2>
       <div class="cards">
@@ -1119,7 +1121,7 @@ function pageContacts(){
     <h1>${bi("Контакты","Contact")}</h1>
     <p>${bi("Напишите или позвоните — мы ответим.","Write or call — we will get back to you.")}</p>
   </div></div>
-  ${blockContacts()}
+  ${blockContacts(true)}
   <section class="contact-map"><div class="wrap">
     <h2>${bi("Как нас найти","Find us on the map")}</h2>
     <iframe src="${MAP_EMBED}" title="${bi("Церковь «Спасение» на Google Картах","Spasenie Church on Google Maps")}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
