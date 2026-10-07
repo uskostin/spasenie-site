@@ -588,10 +588,14 @@ function homeNews(){
 }
 
 function homeArticles(){
-  const cards = ARTICLES.slice(0,2).map(a => `
-    <a class="ncard" data-article-id="${a.id}" href="${lang === "en" ? "/en/articles/" : "/stati/"}${a.id}/">
-      <h3>${bi(esc(a.ru.title), esc(a.en.title))}</h3>
-      <p>${bi(esc(a.ru.lead), esc(a.en.lead))}</p>
+  const featured = [
+    { ruSlug: "pochemu-baptisty-krestyat-pogruzheniem", enSlug: "why-do-baptists-baptize-by-immersion", ruTitle: "Почему баптисты крестят погружением?", enTitle: "Why do Baptists baptize by immersion?", ruLead: "Смысл погружения, личная вера и вопросы к поместной церкви.", enLead: "Immersion, personal faith, and questions to ask a local church." },
+    { ruSlug: "chto-takoe-kreshchenie-po-vere-u-baptistov", enSlug: "what-is-believers-baptism", ruTitle: "Что такое крещение по вере у баптистов?", enTitle: "What is believers' baptism?", ruLead: "Личная вера и открытое свидетельство по опубликованным источникам.", enLead: "Personal faith and a public response in published Baptist sources." }
+  ];
+  const cards = featured.map(a => `
+    <a class="ncard" href="${lang === "en" ? "/en/articles/" + a.enSlug : "/stati/" + a.ruSlug}/">
+      <h3>${bi(esc(a.ruTitle), esc(a.enTitle))}</h3>
+      <p>${bi(esc(a.ruLead), esc(a.enLead))}</p>
     </a>`).join("");
 
   return `
