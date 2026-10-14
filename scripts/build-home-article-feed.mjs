@@ -6,6 +6,7 @@ const root = path.resolve(import.meta.dirname, '..');
 const schedulePath = path.join(root, '.seo-factory', 'schedule.csv');
 const outputPath = path.join(root, 'home-article-feed.js');
 const includePath = process.argv.find(arg => arg.startsWith('--include='))?.slice('--include='.length);
+const actualDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
 
 function parseCsv(input) {
   const rows = [];
@@ -42,6 +43,7 @@ const rows = parseCsv(fs.readFileSync(schedulePath, 'utf8'));
 const ruCards = indexCards(fs.readFileSync(path.join(root, 'stati/index.html'), 'utf8'), '/stati/');
 const enCards = indexCards(fs.readFileSync(path.join(root, 'en/articles/index.html'), 'utf8'), '/en/articles/');
 const published = rows
+  .map((row, order) => ({ ...row, order }))
   .filter(row => row.channel === 'blog' && (row.status === 'published' || row.asset_path === includePath) && /^\d{4}-\d{2}-\d{2}$/.test(row.date))
   .sort((a, b) => b.date.localeCompare(a.date));
 const feed = [];
@@ -56,11 +58,15 @@ for (const row of published) {
   const enUrl = article.match(/<link rel="alternate" hreflang="en" href="https:\/\/orlandorussianchurch\.com(\/en\/articles\/[^\"]+)"/)?.[1];
   const enCard = enCards.get(enUrl);
   if (!enUrl || !enCard) continue;
-  feed.push({ date: row.date, ruUrl, enUrl, ruTitle: ruCard.title, enTitle: enCard.title, ruLead: ruCard.lead, enLead: enCard.lead });
-  if (feed.length === 2) break;
+  const recordedDate = article.match(/"datePublished"\s*:\s*"(\d{4}-\d{2}-\d{2})"/)?.[1];
+  const date = row.asset_path === includePath ? actualDate : recordedDate || row.date;
+  feed.push({ date, order: row.order, ruUrl, enUrl, ruTitle: ruCard.title, enTitle: enCard.title, ruLead: ruCard.lead, enLead: enCard.lead });
 }
 
 if (feed.length < 2) throw new Error('Expected two published bilingual articles in both indexes');
+feed.sort((a, b) => b.date.localeCompare(a.date) || b.order - a.order);
+feed.splice(2);
+for (const article of feed) delete article.order;
 const output = `// Generated from .seo-factory/schedule.csv and the RU/EN article indexes.\nwindow.HOME_ARTICLE_FEED = ${JSON.stringify(feed, null, 2)};\n`;
 fs.writeFileSync(outputPath, output);
 // GoDaddy's CDN may override Cache-Control for .js files. A content-based URL

@@ -10,6 +10,7 @@ const schedulePath = path.join(root, '.seo-factory/schedule.csv');
 const includePath = process.argv.find(arg => arg.startsWith('--include='))?.slice('--include='.length);
 const origin = 'https://orlandorussianchurch.com';
 const isoDate = /^\d{4}-\d{2}-\d{2}$/;
+const actualDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
 
 if (includePath && !/^stati\/[a-z0-9-]+\/index\.html$/.test(includePath)) {
   throw new Error('The --include path must identify one Russian article HTML file');
@@ -42,7 +43,7 @@ if (fs.existsSync(schedulePath)) {
   for (const row of parseCsv(fs.readFileSync(schedulePath, 'utf8'))) {
     if ((row.status === 'published' || row.asset_path === includePath) && isoDate.test(row.date)
         && /^stati\/[a-z0-9-]+\/index\.html$/.test(row.asset_path)) {
-      scheduled.set(`/${row.asset_path.replace(/index\.html$/, '')}`, row.date);
+      scheduled.set(`/${row.asset_path.replace(/index\.html$/, '')}`, row.asset_path === includePath ? actualDate : row.date);
     }
   }
 }
@@ -100,9 +101,12 @@ for (const url of urls) {
     if (jsonLd) {
       const ruUrl = pathname.startsWith('/stati/') ? pathname
         : html.match(/<link rel="alternate" hreflang="ru" href="https:\/\/orlandorussianchurch\.com(\/stati\/[^\"]+)"/)?.[1];
-      const published = scheduled.get(ruUrl) || jsonLd.data.datePublished || gitDate(file, true);
+      const selected = includePath && ruUrl === `/${includePath.replace(/index\.html$/, '')}`;
+      const published = selected ? actualDate : jsonLd.data.datePublished || scheduled.get(ruUrl) || gitDate(file, true);
       if (!published || !isoDate.test(published)) throw new Error(`Unknown publication date: ${url}`);
-      const modified = jsonLd.data.dateModified || [published, lastmod].filter(Boolean).sort().at(-1);
+      const modified = selected
+        ? [published, jsonLd.data.dateModified, lastmod].filter(Boolean).sort().at(-1)
+        : jsonLd.data.dateModified || [published, lastmod].filter(Boolean).sort().at(-1);
       jsonLd.data.datePublished = published;
       jsonLd.data.dateModified = modified;
       const replacement = `<script type="application/ld+json">${JSON.stringify(jsonLd.data)}</script>`;
