@@ -212,6 +212,8 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
 .ncard{display:block;text-decoration:none}
 .ncard-img{display:block;aspect-ratio:4/3;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:.9rem;background:var(--paper)}
 .ncard-img img{width:100%;height:100%;object-fit:cover}
+.ncard-img--poster{aspect-ratio:1}
+.ncard-img--poster img{object-fit:contain}
 .ncard-img .ph{height:100%}
 .ncard time{color:var(--stone);font-size:.85rem}
 .ncard h3{margin:.3rem 0 .4rem;font-size:1.08rem;font-weight:600;line-height:1.3}
@@ -349,7 +351,11 @@ const NEWS = [
   {
     date: "2026-10-14",
     eventDate: "2026-12-12",
-    noMedia: true,
+    photo: "img/bethlehem-christmas-2026.jpg",
+    image_en: "img/bethlehem-christmas-2026.jpg",
+    alt_ru: "Афиша рождественского представления «Путешествие по Вифлеему» 10–12 декабря",
+    alt_en: "Russian-language poster for Journey through Bethlehem, December 10–12",
+    poster: true,
     sourceUrl: "https://www.facebook.com/photo/?fbid=1589410579896793&set=a.454231223414740",
     sourceLabel: { ru: "Посмотреть приглашение и афишу в Facebook", en: "View the invitation and poster on Facebook" },
     ru: {
@@ -629,7 +635,7 @@ function homeNews(){
 
   const cards = recent.map(n => `
     <a class="ncard" href="#/novosti">
-      ${n.noMedia ? '' : '<span class="ncard-img">'+(newsImage(n) ? '<img src="'+newsImage(n)+'" alt="'+newsAlt(n)+'" loading="lazy">' : '<span class="ph">'+bi("фотография","photo")+'</span>')+'</span>'}
+      ${n.noMedia ? '' : '<span class="ncard-img'+(n.poster ? ' ncard-img--poster' : '')+'">'+(newsImage(n) ? '<img src="'+newsImage(n)+'" alt="'+newsAlt(n)+'" loading="lazy">' : '<span class="ph">'+bi("фотография","photo")+'</span>')+'</span>'}
       <time>${fmtDate(n.date)}</time>
       <h3>${bi(esc(n.ru.title), esc(n.en.title))}</h3>
       <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
@@ -748,7 +754,7 @@ function pageNews(){
         ${n.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
         <h2>${bi(esc(n.ru.title), esc(n.en.title))}</h2>
         <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
-        ${n.noMedia ? '' : n.youtube ? youtubeBlock(n.youtube, n.videoLabel?.ru, n.videoLabel?.en) : n.video ? videoBlock(n.video, newsImage(n)) : photoBlock(newsImage(n), newsAlt(n))}
+        ${n.noMedia ? '' : n.youtube ? youtubeBlock(n.youtube, n.videoLabel?.ru, n.videoLabel?.en) : n.video ? videoBlock(n.video, newsImage(n)) : n.poster && n.sourceUrl ? `<a href="${attr(n.sourceUrl)}" target="_blank" rel="noopener noreferrer">${photoBlock(newsImage(n), newsAlt(n))}</a>` : photoBlock(newsImage(n), newsAlt(n))}
         ${(n[lang]?.body || []).map(p => `<p>${esc(p)}</p>`).join("")}
         ${n.sourceUrl ? `<p><a href="${attr(n.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(n.sourceLabel?.[lang] || (lang === "en" ? "Original announcement" : "Оригинальное объявление"))}</a></p>` : ''}
       </div>
