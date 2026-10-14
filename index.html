@@ -347,6 +347,29 @@ const POSTER_ORKESTR = "img/003.jpg";
 
 const NEWS = [
   {
+    date: "2026-10-14",
+    eventDate: "2026-12-12",
+    noMedia: true,
+    sourceUrl: "https://www.facebook.com/photo/?fbid=1589410579896793&set=a.454231223414740",
+    sourceLabel: { ru: "Посмотреть приглашение и афишу в Facebook", en: "View the invitation and poster on Facebook" },
+    ru: {
+      title: "«Путешествие по Вифлеему»: рождественское представление в Winter Park",
+      text: "Церковь «Спасение» приглашает жителей Орландо и окрестностей на рождественское представление «Путешествие по Вифлеему» 10–12 декабря. Приходите всей семьёй познакомиться с библейским рассказом о рождении Иисуса Христа.",
+      body: [
+        "Расписание: четверг, 10 декабря, с 19:00 до 21:00; пятница и суббота, 11 и 12 декабря, с 18:00 до 21:00. Время местное, Winter Park, Florida.",
+        "Адрес: 701 Formosa Ave, Winter Park, FL 32789. Оригинальное приглашение и афиша опубликованы на странице церкви в Facebook."
+      ]
+    },
+    en: {
+      title: "Journey through Bethlehem: a Christmas presentation in Winter Park",
+      text: "Spasenie Church invites families in the Orlando area to Journey through Bethlehem, a Christmas presentation on December 10–12. Come with your family to explore the biblical story of the birth of Jesus Christ.",
+      body: [
+        "Hours: Thursday, December 10, from 7:00 to 9:00 PM; Friday and Saturday, December 11 and 12, from 6:00 to 9:00 PM. All times are local to Winter Park, Florida.",
+        "Address: 701 Formosa Ave, Winter Park, FL 32789. The original invitation and Russian-language poster are available on the church's Facebook page."
+      ]
+    }
+  },
+  {
     date: "2026-10-07",
     photo: "https://i.ytimg.com/vi/rC46RNyzsEs/hqdefault.jpg",
     image_en: "https://i.ytimg.com/vi/rC46RNyzsEs/hqdefault.jpg",
@@ -606,7 +629,7 @@ function homeNews(){
 
   const cards = recent.map(n => `
     <a class="ncard" href="#/novosti">
-      <span class="ncard-img">${newsImage(n) ? '<img src="'+newsImage(n)+'" alt="'+newsAlt(n)+'" loading="lazy">' : '<span class="ph">'+bi("фотография","photo")+'</span>'}</span>
+      ${n.noMedia ? '' : '<span class="ncard-img">'+(newsImage(n) ? '<img src="'+newsImage(n)+'" alt="'+newsAlt(n)+'" loading="lazy">' : '<span class="ph">'+bi("фотография","photo")+'</span>')+'</span>'}
       <time>${fmtDate(n.date)}</time>
       <h3>${bi(esc(n.ru.title), esc(n.en.title))}</h3>
       <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
@@ -725,8 +748,9 @@ function pageNews(){
         ${n.draft ? '<span class="draft">'+bi("заглушка","placeholder")+'</span>' : ''}
         <h2>${bi(esc(n.ru.title), esc(n.en.title))}</h2>
         <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
-        ${n.youtube ? youtubeBlock(n.youtube, n.videoLabel?.ru, n.videoLabel?.en) : n.video ? videoBlock(n.video, newsImage(n)) : photoBlock(newsImage(n), newsAlt(n))}
+        ${n.noMedia ? '' : n.youtube ? youtubeBlock(n.youtube, n.videoLabel?.ru, n.videoLabel?.en) : n.video ? videoBlock(n.video, newsImage(n)) : photoBlock(newsImage(n), newsAlt(n))}
         ${(n[lang]?.body || []).map(p => `<p>${esc(p)}</p>`).join("")}
+        ${n.sourceUrl ? `<p><a href="${attr(n.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(n.sourceLabel?.[lang] || (lang === "en" ? "Original announcement" : "Оригинальное объявление"))}</a></p>` : ''}
       </div>
     </article>`).join("");
 
