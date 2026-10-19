@@ -44,8 +44,8 @@ function russianHome(html) {
     .replace('<body class="lang-en">', '<body class="lang-ru">')
     .replace('aria-label="Menu"', 'aria-label="Меню"')
     .replace('Spasenie Church — Sunday at 1 PM, Thursday at 7 PM', 'Церковь «Спасение» — воскресенье 13:00, четверг 19:00')
-    .replace('Russian-Speaking Church in Orlando | Spasenie Church', 'Церковь Спасение — русскоязычная церковь в Орландо')
-    .replace('Spasenie is a Russian-speaking Christian church in Winter Park, Orlando area. Sunday worship at 1 PM; Thursday Bible study and prayer at 7 PM. 701 Formosa Avenue.', 'Русскоязычная христианская церковь в Winter Park, в районе Орландо. Богослужение в воскресенье в 13:00, изучение Библии и молитва в четверг в 19:00. 701 Formosa Avenue.')
+    .replace('Russian-Speaking Church in Orlando &amp; Winter Park | Spasenie', 'Русскоязычная церковь в Орландо и Winter Park | Спасение')
+    .replace('Visit Spasenie, a Russian-speaking church in Winter Park near Orlando, Florida. Sunday worship at 1 PM. 701 Formosa Avenue. Directions and first-visit information.', 'Церковь «Спасение» в Winter Park, рядом с Орландо, Флорида. Богослужение в воскресенье в 13:00. 701 Formosa Avenue. Адрес, маршрут и информация для первого визита.')
     .replace('<link rel="canonical" href="https://orlandorussianchurch.com/">', '<link rel="canonical" href="https://orlandorussianchurch.com/ru/">')
     .replace('<meta property="og:locale" content="en_US">', '<meta property="og:locale" content="ru_RU">')
     .replace('<meta property="og:locale:alternate" content="ru_RU">', '<meta property="og:locale:alternate" content="en_US">')
@@ -53,9 +53,10 @@ function russianHome(html) {
     .replace('Russian-language worship in Winter Park every Sunday at 1 PM, with Bible study and prayer on Thursdays at 7 PM.', 'Русскоязычное богослужение в Winter Park каждое воскресенье в 13:00; изучение Библии и молитва по четвергам в 19:00.')
     .replace('<meta property="og:url" content="https://orlandorussianchurch.com/">', '<meta property="og:url" content="https://orlandorussianchurch.com/ru/">')
     .replace('<section class="wrap" aria-label="Visitor information">', '<section class="wrap" aria-label="Информация для посетителей">')
-    .replace('<h1>Russian-speaking church in the Orlando area</h1>', '<h1>Русскоязычная церковь в районе Орландо</h1>')
+    .replace('<h1>Russian-speaking church in Winter Park, near Orlando</h1>', '<h1>Русскоязычная церковь в Winter Park, рядом с Орландо</h1>')
     .replace('Spasenie Church meets at 701 Formosa Avenue, Winter Park, Florida. Sunday worship begins at 1:00 PM. The Thursday Bible study and prayer meeting begins at 7:00 PM. Services are held primarily in Russian.', 'Церковь «Спасение» собирается по адресу 701 Formosa Avenue, Winter Park, Florida. Воскресное богослужение начинается в 13:00. Изучение Библии и молитва по четвергам начинаются в 19:00. Основной язык встреч — русский.')
     .replace('<a href="/ru/">Русская версия</a> · <a href="/en/articles/">English articles</a>', '<a href="/stati/">Статьи на русском</a> · <a href="/">English homepage</a>')
+    .replace('<a href="/en/articles/russkoyazychnaya-cerkov-orlando-winter-park/">Address and weekly schedule</a> · <a href="/en/articles/pervyi-vizit-v-russkuyu-cerkov-orlando/">Plan your first visit</a> · <a href="/ru/">Русская версия</a>', '<a href="/stati/russkoyazychnaya-cerkov-orlando-winter-park/">Адрес и расписание</a> · <a href="/stati/pervyi-vizit-v-russkuyu-cerkov-orlando/">Первый визит</a> · <a href="/">English homepage</a>')
     .replace(/(["'])img\//g, '$1/img/')
     .replace(/(["'])video\/([^"']+\.(?:mp4|webm|ogg))\1/g, '$1/video/$2$1');
 }
