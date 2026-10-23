@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 3000;
 // GoDaddy may retain files removed by a later deployment. Keep scheduled
 // articles unreachable until their publication commit removes the path here.
 const UNPUBLISHED_PATHS = new Set([]);
+// Retired by the owner; retain source files for recovery, but return 410.
+const RETIRED_PATHS = new Set(["/stati/pastor-i-rukopolozhenie/","/en/articles/pastor-elder-and-ordination/"]);
 const TYPES = {
   ".html": "text/html; charset=utf-8",
   ".css": "text/css; charset=utf-8",
@@ -119,6 +121,12 @@ http.createServer((req, res) => {
     pathname = decodeURIComponent(req.url.split("?")[0]);
   } catch {
     return send(res, 400, "Bad request", "text/plain; charset=utf-8", "no-store");
+  }
+
+  const retiredPath = pathname.replace(/\/index\.html$/, "/").replace(/\/?$/, "/");
+  if (RETIRED_PATHS.has(retiredPath)) {
+    res.writeHead(410, { ...HEADERS, "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store", "X-Robots-Tag": "noindex" });
+    return res.end('<html lang="en"><head><meta name="robots" content="noindex"><title>Page removed</title></head><body><p>This page has been removed. / Страница снята с публикации.</p><a href="/stati/">Статьи</a> · <a href="/en/articles/">Articles</a></body></html>');
   }
 
   if (pathname === "/index.html") {

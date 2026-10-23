@@ -2,12 +2,12 @@
 window.HOME_ARTICLE_FEED = [
   {
     "date": "2026-10-23",
-    "ruUrl": "/stati/pastor-i-rukopolozhenie/",
-    "enUrl": "/en/articles/pastor-elder-and-ordination/",
-    "ruTitle": "Пастор, пресвитер и рукоположение: что означают эти слова",
-    "enTitle": "Pastor, elder and ordination: what the terms mean",
-    "ruLead": "Как называют служителей у баптистов, что означает рукоположение и чем оно отличается от должности пастора. Объяснение терминов по первоисточникам.",
-    "enLead": "Pastor, elder, deacon and ordination in Baptist churches: understand the titles, recognition for ministry and questions to ask a congregation."
+    "ruUrl": "/stati/krestnoe-znamenie-u-baptistov/",
+    "enUrl": "/en/articles/do-baptists-make-the-sign-of-the-cross/",
+    "ruTitle": "Используют ли баптисты крестное знамение?",
+    "enTitle": "Do Baptists make the sign of the cross?",
+    "ruLead": "Крестное знамение и водное крещение: в чём разница, почему практика христиан отличается и как ориентироваться гостю баптистской церкви.",
+    "enLead": "The sign of the cross and water baptism are different actions. Learn about Baptist practice, personal prayer habits and visiting a church."
   },
   {
     "date": "2026-10-22",
