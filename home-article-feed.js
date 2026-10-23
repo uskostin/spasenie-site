@@ -1,6 +1,15 @@
 // Generated from .seo-factory/schedule.csv and the RU/EN article indexes.
 window.HOME_ARTICLE_FEED = [
   {
+    "date": "2026-10-23",
+    "ruUrl": "/stati/pastor-i-rukopolozhenie/",
+    "enUrl": "/en/articles/pastor-elder-and-ordination/",
+    "ruTitle": "Пастор, пресвитер и рукоположение: что означают эти слова",
+    "enTitle": "Pastor, elder and ordination: what the terms mean",
+    "ruLead": "Как называют служителей у баптистов, что означает рукоположение и чем оно отличается от должности пастора. Объяснение терминов по первоисточникам.",
+    "enLead": "Pastor, elder, deacon and ordination in Baptist churches: understand the titles, recognition for ministry and questions to ask a congregation."
+  },
+  {
     "date": "2026-10-22",
     "ruUrl": "/stati/s-chego-nachat-izuchenie-baptizma/",
     "enUrl": "/en/articles/how-to-start-learning-about-baptists/",
@@ -8,14 +17,5 @@ window.HOME_ARTICLE_FEED = [
     "enTitle": "How to start learning about Baptists",
     "ruLead": "Что читать о баптизме: вероисповедные документы, библейские отрывки и история. Как сравнивать источники и подготовить вопросы для беседы.",
     "enLead": "A reading guide to Baptist beliefs: compare statements, read biblical references in context and prepare questions for a conversation."
-  },
-  {
-    "date": "2026-10-21",
-    "ruUrl": "/stati/voprosy-pervogo-vizita-v-baptistskuyu-cerkov/",
-    "enUrl": "/en/articles/questions-first-visit-baptist-church/",
-    "ruTitle": "Первый визит в баптистскую церковь: о чём спросить",
-    "enTitle": "First visit to a Baptist church: questions to ask",
-    "ruLead": "Что спросить у служителя при первом посещении баптистской церкви: Библия, крещение, Вечеря Господня и членство. Как подготовиться к содержательному разговору.",
-    "enLead": "Questions for a first visit to a Baptist church: the Bible, baptism, the Lord’s Supper and membership. Prepare for a conversation with a church leader."
   }
 ];
