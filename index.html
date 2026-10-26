@@ -189,8 +189,9 @@ footer.site-foot{border-top:1px solid var(--line);padding:1.8rem 0 3rem;color:va
 .foot-in a{color:var(--stone)}
 .foot-social{display:flex;flex-wrap:wrap;align-items:center;gap:.25rem .9rem}
 .foot-social a{display:inline-flex;align-items:center;min-height:44px}
-.social-item a{display:inline-flex;align-items:center;min-height:44px;color:var(--pine);font-weight:600;text-decoration:none}
-.foot-social a:hover,.social-item a:hover{text-decoration:underline}
+.contact-social-links{display:flex;align-items:center;gap:clamp(.75rem,2vw,1.5rem);white-space:nowrap}
+.contact-social-links a{display:inline-flex;align-items:center;min-height:44px;color:var(--pine);font-weight:600;text-decoration:none}
+.foot-social a:hover,.contact-social-links a:hover{text-decoration:underline}
 .announce{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4rem 1rem;margin-top:1.6rem;padding:1rem 1.2rem;border:1px solid var(--line);border-left:3px solid var(--pine);border-radius:0 10px 10px 0;text-decoration:none;background:var(--surface)}
 .announce:hover{border-color:var(--pine)}
 .announce-tag{color:var(--pine);font-size:.8rem;font-weight:600}
@@ -1183,16 +1184,12 @@ function pageContacts(){
   <section class="band">
     <div class="wrap split">
       <h2>${bi("Мы в соцсетях","Social")}</h2>
-      <div>
-        <div class="item social-item"><h3>Facebook</h3>
-          <p><a href="https://www.facebook.com/ChurchSpasenie" target="_blank" rel="noopener noreferrer">facebook.com/ChurchSpasenie</a></p></div>
-        <div class="item social-item"><h3>YouTube</h3>
-          <p><a href="https://www.youtube.com/@ChurchSpasenieOrlando" target="_blank" rel="noopener noreferrer">youtube.com/@ChurchSpasenieOrlando</a></p></div>
-        <div class="item social-item"><h3>Instagram</h3>
-          <p><a href="https://www.instagram.com/churchspasenie" target="_blank" rel="noopener noreferrer">instagram.com/churchspasenie</a></p></div>
-        <div class="item social-item"><h3>X</h3>
-          <p><a href="https://x.com/SpasenieChurch" target="_blank" rel="noopener noreferrer">x.com/SpasenieChurch</a></p></div>
-      </div>
+      <nav class="contact-social-links" aria-label="${lang === 'ru' ? 'Социальные сети' : 'Social media'}">
+        <a href="https://www.facebook.com/ChurchSpasenie" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://www.youtube.com/@ChurchSpasenieOrlando" target="_blank" rel="noopener noreferrer">YouTube</a>
+        <a href="https://www.instagram.com/churchspasenie" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://x.com/SpasenieChurch" target="_blank" rel="noopener noreferrer">X</a>
+      </nav>
     </div>
   </section>`;
 }
