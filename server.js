@@ -64,6 +64,13 @@ function russianHome(html) {
 }
 
 function send(res, code, body, type, cache) {
+  // Share the site's icons with both language indexes and article pages.
+  if (code === 200 && type.startsWith("text/html")) {
+    const html = body.toString();
+    if (!/<link\b[^>]*rel=["'](?:shortcut )?icon["']/i.test(html)) {
+      body = html.replace(/<\/head>/i, '<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png"><link rel="icon" type="image/x-icon" sizes="32x32" href="/favicon.ico"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"></head>');
+    }
+  }
   res.writeHead(code, { ...HEADERS, "Content-Type": type, "Cache-Control": cache });
   res.end(body);
 }
