@@ -7,7 +7,7 @@ const ROOT = __dirname;
 const PORT = process.env.PORT || 3000;
 // GoDaddy may retain files removed by a later deployment. Keep scheduled
 // articles unreachable until their publication commit removes the path here.
-const UNPUBLISHED_PATHS = new Set([]);
+const UNPUBLISHED_PATHS = new Set(["/stati/pochemu-evangeliy-chetyre/","/en/articles/why-are-there-four-gospels/","/stati/evangelie-ot-matfeya-kak-chitat/","/en/articles/reading-the-gospel-of-matthew/","/stati/evangelie-ot-marka-kak-chitat/","/en/articles/reading-the-gospel-of-mark/","/stati/evangelie-ot-luki-kak-chitat/","/en/articles/reading-the-gospel-of-luke/","/stati/evangelie-ot-ioanna-zachem-napisano/","/en/articles/why-john-wrote-his-gospel/","/stati/chto-takoe-carstvo-bozhie-v-evangelii/","/en/articles/kingdom-of-god-in-the-gospels/","/stati/kak-chitat-pritchi-iisusa/","/en/articles/how-to-read-jesus-parables/","/stati/miloserdnyi-samaryanin-smysl-pritchi/","/en/articles/good-samaritan-parable-meaning/","/stati/pritcha-o-bludnom-syne-i-starshem-brate/","/en/articles/prodigal-son-and-older-brother/","/stati/nagornaya-propoved-o-chem/","/en/articles/what-is-the-sermon-on-the-mount-about/","/stati/chto-znachit-sledovat-za-iisusom/","/en/articles/what-does-following-jesus-mean/","/stati/pochemu-krest-v-centre-evangeliya/","/en/articles/why-the-cross-is-central-to-the-gospel/","/stati/voskresenie-iisusa-v-chetyreh-evangeliyah/","/en/articles/resurrection-accounts-in-the-four-gospels/"]);
 // Retired by the owner; retain source files for recovery, but return 410.
 const RETIRED_PATHS = new Set(["/stati/pastor-i-rukopolozhenie/","/en/articles/pastor-elder-and-ordination/"]);
 const TYPES = {
