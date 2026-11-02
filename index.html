@@ -356,6 +356,29 @@ const POSTER_ORKESTR = "img/003.jpg";
 
 const NEWS = [
   {
+    date: "2026-11-02",
+    photo: "https://i.ytimg.com/vi/-nmUgWG74Gk/hqdefault.jpg",
+    image_en: "https://i.ytimg.com/vi/-nmUgWG74Gk/hqdefault.jpg",
+    alt_ru: "Обложка записи конференции для молодёжных лидеров 23 октября 2026 года",
+    alt_en: "Thumbnail of the youth leaders conference recording from October 23, 2026",
+    youtube: "-nmUgWG74Gk",
+    videoLabel: { ru: "Смотреть запись 23 октября на YouTube", en: "Watch the October 23 recording on YouTube" },
+    recordings: [
+      { id: "FFStQONkR8M", ru: "24 октября — запись продолжительностью 2 часа 39 минут", en: "October 24 — 2-hour 39-minute recording" },
+      { id: "xpG1PUYmDAA", ru: "24 октября — запись продолжительностью 1 час 26 минут", en: "October 24 — 1-hour 26-minute recording" }
+    ],
+    ru: {
+      title: "Конференция для молодёжных лидеров: доступны видеозаписи",
+      text: "На YouTube-канале церкви «Спасение» доступны записи конференции для молодёжных лидеров от 23 и 24 октября 2026 года. Собрали ссылки, чтобы их было удобно найти и посмотреть.",
+      body: ["Выше размещена запись трансляции 23 октября. По ссылкам ниже можно открыть две продолжительные записи от 24 октября. Все видео опубликованы на канале Church Spasenie of Orlando; названия и даты соответствуют публикациям канала."]
+    },
+    en: {
+      title: "Youth leaders conference: video recordings available",
+      text: "Recordings of the youth leaders conference dated October 23 and 24, 2026, are available on Spasenie Church’s YouTube channel. We have gathered the links so you can find and watch them together.",
+      body: ["The October 23 livestream recording is embedded above. The links below open two extended recordings from October 24. All videos are published by Church Spasenie of Orlando; the titles and dates follow the channel’s listings."]
+    }
+  },
+  {
     date: "2026-10-14",
     eventDate: "2026-12-12",
     photo: "img/bethlehem-christmas-2026.jpg",
@@ -761,7 +784,7 @@ function videoBlock(src, poster){
 
 function youtubeBlock(id, labelRu, labelEn){
   const url = `https://www.youtube.com/watch?v=${id}`;
-  return `<div class="news-live"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${bi(esc(labelRu || "Прямой эфир церкви «Спасение»"),esc(labelEn || "Spasenie Church livestream"))}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><a href="${url}" target="_blank" rel="noopener noreferrer">${bi(esc(labelRu || "Открыть эфир на YouTube"),esc(labelEn || "Watch on YouTube"))}</a></div>`;
+  return `<div class="news-live"><iframe src="https://www.youtube-nocookie.com/embed/${id}" title="${esc(lang === "en" ? (labelEn || "Spasenie Church livestream") : (labelRu || "Прямой эфир церкви «Спасение»"))}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><a href="${url}" target="_blank" rel="noopener noreferrer">${bi(esc(labelRu || "Открыть эфир на YouTube"),esc(labelEn || "Watch on YouTube"))}</a></div>`;
 }
 
 function pageNews(){
@@ -774,6 +797,7 @@ function pageNews(){
         <p>${bi(esc(n.ru.text), esc(n.en.text))}</p>
         ${n.noMedia ? '' : n.youtube ? youtubeBlock(n.youtube, n.videoLabel?.ru, n.videoLabel?.en) : n.video ? videoBlock(n.video, newsImage(n)) : n.poster && n.sourceUrl ? `<a href="${attr(n.sourceUrl)}" target="_blank" rel="noopener noreferrer">${photoBlock(newsImage(n), newsAlt(n))}</a>` : photoBlock(newsImage(n), newsAlt(n))}
         ${(n[lang]?.body || []).map(p => `<p>${esc(p)}</p>`).join("")}
+        ${n.recordings?.length ? `<ul>${n.recordings.map(v => `<li><a href="https://www.youtube.com/watch?v=${attr(v.id)}" target="_blank" rel="noopener noreferrer">${esc(v[lang])}</a></li>`).join("")}</ul>` : ''}
         ${n.sourceUrl ? `<p><a href="${attr(n.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(n.sourceLabel?.[lang] || (lang === "en" ? "Original announcement" : "Оригинальное объявление"))}</a></p>` : ''}
       </div>
     </article>`).join("");
