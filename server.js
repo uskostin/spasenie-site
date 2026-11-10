@@ -7,7 +7,7 @@ const ROOT = __dirname;
 const PORT = process.env.PORT || 3000;
 // GoDaddy may retain files removed by a later deployment. Keep scheduled
 // articles unreachable until their publication commit removes the path here.
-const UNPUBLISHED_PATHS = new Set(["/stati/nagornaya-propoved-o-chem/","/en/articles/what-is-the-sermon-on-the-mount-about/","/stati/chto-znachit-sledovat-za-iisusom/","/en/articles/what-does-following-jesus-mean/","/stati/pochemu-krest-v-centre-evangeliya/","/en/articles/why-the-cross-is-central-to-the-gospel/","/stati/voskresenie-iisusa-v-chetyreh-evangeliyah/","/en/articles/resurrection-accounts-in-the-four-gospels/"]);
+const UNPUBLISHED_PATHS = new Set(["/stati/chto-znachit-sledovat-za-iisusom/","/en/articles/what-does-following-jesus-mean/","/stati/pochemu-krest-v-centre-evangeliya/","/en/articles/why-the-cross-is-central-to-the-gospel/","/stati/voskresenie-iisusa-v-chetyreh-evangeliyah/","/en/articles/resurrection-accounts-in-the-four-gospels/"]);
 // Retired by the owner; retain source files for recovery, but return 410.
 const RETIRED_PATHS = new Set(["/stati/pastor-i-rukopolozhenie/","/en/articles/pastor-elder-and-ordination/"]);
 const TYPES = {
